@@ -421,7 +421,7 @@ var json_kampus_sumbar_3 = {
         EMAIL: "info@fdk.ac.id",
         JUMLAH_PRODI: "17",
       },
-      geometry: { type: "Point", coordinates: [0.388, -0.297] },
+      geometry: { type: "Point", coordinates: [100.388, -0.297] },
     },
     {
       type: "Feature",
