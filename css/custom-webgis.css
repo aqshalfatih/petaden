@@ -1,0 +1,1195 @@
+
+:root {
+  --primary: #7e021e;
+  --cream: #f5ebd0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 12px;
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100%;
+  overflow-x: hidden;
+  background: var(--cream);
+  color: var(--primary);
+  font-family:
+    "Plus Jakarta Sans",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+a {
+  word-break: break-word;
+}
+
+section[id] {
+  scroll-margin-top: 0px;
+}
+
+#preloader.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#backToTop.show {
+  display: grid;
+}
+
+#menuBtn {
+  position: relative;
+  z-index: 1130;
+}
+
+#menuBtn i {
+  color: var(--primary);
+}
+
+#menuBtn[aria-expanded="true"] {
+  background: var(--primary) !important;
+  border-color: rgba(245, 235, 208, 0.35) !important;
+  color: var(--cream) !important;
+  box-shadow: 0 16px 42px rgba(126, 2, 30, 0.22) !important;
+}
+
+#menuBtn[aria-expanded="true"] i {
+  color: var(--cream) !important;
+}
+
+#mobileBackdrop {
+  z-index: 1040 !important;
+}
+
+#mobileMenu {
+  z-index: 1120 !important;
+}
+
+#map {
+  width: 100% !important;
+  position: relative;
+}
+
+/* Sembunyikan kontrol layer bawaan Leaflet; layer dikontrol lewat tombol custom di dalam peta. */
+.petaden-layer-control,
+.edumap-layer-control,
+.leaflet-control-layers.petaden-layer-control,
+.leaflet-control-layers.edumap-layer-control {
+  display: none !important;
+}
+
+/* Legenda kabupaten/kota */
+.region-legend-panel {
+  margin-top: 0.75rem;
+  border: 1px solid rgba(126, 2, 30, 0.18);
+  border-radius: 1.15rem;
+  background: rgba(245, 235, 208, 0.92);
+  overflow: hidden;
+}
+
+.region-legend-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.78rem 0.85rem;
+  border-bottom: 1px solid rgba(245, 235, 208, 0.2);
+  background: var(--primary);
+  color: var(--cream);
+}
+
+.region-legend-header h4 {
+  margin: 0;
+  color: var(--cream);
+  font-size: 0.9rem;
+  font-weight: 950;
+  letter-spacing: -0.02em;
+}
+
+.region-legend-header p {
+  margin-top: 0.2rem;
+  color: rgba(245, 235, 208, 0.82);
+  font-size: 0.72rem;
+  line-height: 1.5;
+  font-weight: 600;
+}
+
+.region-legend-header > span {
+  flex: none;
+  border-radius: 999px;
+  border: 1px solid rgba(245, 235, 208, 0.25);
+  background: rgba(245, 235, 208, 0.12);
+  padding: 0.28rem 0.55rem;
+  color: var(--cream);
+  font-size: 0.68rem;
+  font-weight: 950;
+}
+
+.region-legend-grid.compact-region-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.48rem;
+  max-height: 215px;
+  overflow: auto;
+  padding: 0.7rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(126, 2, 30, 0.42) rgba(245, 235, 208, 0.65);
+}
+
+.region-legend-grid.compact-region-grid::-webkit-scrollbar,
+.search-suggestions::-webkit-scrollbar,
+.campus-popup-body::-webkit-scrollbar,
+.region-popup-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.region-legend-grid.compact-region-grid::-webkit-scrollbar-track,
+.search-suggestions::-webkit-scrollbar-track,
+.campus-popup-body::-webkit-scrollbar-track,
+.region-popup-body::-webkit-scrollbar-track {
+  background: rgba(245, 235, 208, 0.75);
+  border-radius: 999px;
+}
+
+.region-legend-grid.compact-region-grid::-webkit-scrollbar-thumb,
+.search-suggestions::-webkit-scrollbar-thumb,
+.campus-popup-body::-webkit-scrollbar-thumb,
+.region-popup-body::-webkit-scrollbar-thumb {
+  background: rgba(126, 2, 30, 0.5);
+  border-radius: 999px;
+}
+
+.region-legend-grid.compact-region-grid span {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.48rem;
+  border: 1px solid rgba(126, 2, 30, 0.16);
+  border-radius: 0.8rem;
+  background: rgba(245, 235, 208, 0.92);
+  padding: 0.48rem 0.55rem;
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 850;
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.region-legend-grid.compact-region-grid img {
+  width: 0.85rem;
+  height: 0.85rem;
+  object-fit: cover;
+  flex-shrink: 0;
+  border-radius: 0.28rem;
+  border: 1px solid #7e021e;
+}
+
+.region-legend-grid.compact-region-grid i {
+  flex: none;
+  width: 0.72rem;
+  height: 0.72rem;
+  border-radius: 0.25rem;
+
+}
+
+.legend-note {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+  border-radius: 1rem;
+  background: rgba(126, 2, 30, 0.06);
+  padding: 0.72rem;
+  color: var(--primary);
+  font-size: 0.72rem;
+  line-height: 1.55;
+}
+
+.legend-note i {
+  color: var(--primary);
+  margin-top: 0.15rem;
+}
+
+.legend-note strong {
+  font-weight: 950;
+}
+
+/* Pencarian kampus */
+.map-search-panel {
+  position: relative;
+  z-index: 980;
+  display: grid;
+  gap: 0.55rem;
+  margin: 0 0 0.7rem;
+  border: 1px solid rgba(126, 2, 30, 0.18);
+  border-radius: 1.05rem;
+  background: rgba(245, 235, 208, 0.92);
+  padding: 0.75rem;
+}
+
+.map-search-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.map-search-icon,
+.search-suggestion-icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  background: rgba(126, 2, 30, 0.1);
+  color: var(--primary);
+}
+
+.map-search-icon {
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 0.8rem;
+}
+
+#univSearch {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--primary);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+#univSearch::placeholder {
+  color: rgba(126, 2, 30, 0.72);
+  font-weight: 700;
+}
+
+#clearUnivSearch {
+  display: none;
+  border: 1px solid rgba(126, 2, 30, 0.16);
+  border-radius: 999px;
+  background: var(--primary);
+  padding: 0.38rem 0.6rem;
+  color: var(--cream);
+  font-size: 0.75rem;
+  font-weight: 900;
+}
+
+#clearUnivSearch.show {
+  display: inline-flex;
+}
+
+.search-suggestions {
+  position: absolute;
+  left: 0.75rem;
+  right: 0.75rem;
+  top: calc(100% - 0.2rem);
+  z-index: 2200;
+  display: none;
+  max-height: 245px;
+  overflow-y: auto;
+  border: 1px solid rgba(126, 2, 30, 0.18);
+  border-radius: 1rem;
+  background: var(--cream);
+  box-shadow: 0 20px 50px rgba(45, 37, 20, 0.16);
+  padding: 0.45rem;
+}
+
+.search-suggestions.show {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.search-suggestion-item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  border: 0;
+  border-radius: 0.85rem;
+  background: transparent;
+  padding: 0.62rem;
+  text-align: left;
+  color: var(--primary);
+  cursor: pointer;
+}
+
+.search-suggestion-item:hover,
+.search-suggestion-item.is-active {
+  background: rgba(126, 2, 30, 0.08);
+}
+
+.search-suggestion-icon {
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 0.65rem;
+}
+
+.search-suggestion-title {
+  display: block;
+  color: var(--primary);
+  font-size: 0.8rem;
+  line-height: 1.25;
+  font-weight: 950;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.search-suggestion-meta {
+  display: block;
+  margin-top: 0.1rem;
+  color: rgba(126, 2, 30, 0.8);
+  font-size: 0.68rem;
+  line-height: 1.3;
+  font-weight: 750;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.search-empty {
+  padding: 0.65rem 0.7rem;
+  color: var(--primary);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+/* Kontrol layer custom di dalam area peta */
+.map-canvas-wrapper {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  border-radius: 1.15rem;
+  overflow: hidden;
+}
+
+.map-layer-widget {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  z-index: 760;
+  display: grid;
+  justify-items: end;
+  gap: 0.55rem;
+  pointer-events: none;
+}
+
+.map-layer-button,
+.map-layer-panel {
+  pointer-events: auto;
+}
+
+.map-layer-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid rgba(126, 2, 30, 0.18);
+  border-radius: 999px;
+  background: var(--primary);
+  box-shadow: 0 14px 34px rgba(63, 42, 8, 0.16);
+  padding: 0.62rem 0.85rem;
+  color: var(--cream);
+  font-size: 0.82rem;
+  font-weight: 950;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.map-layer-button:hover,
+.map-layer-button.is-open {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 42px rgba(63, 42, 8, 0.2);
+}
+
+.map-layer-button i {
+  display: grid;
+  place-items: center;
+  width: 1.45rem;
+  height: 1.45rem;
+  border-radius: 0.58rem;
+  background: var(--cream);
+  color: var(--primary);
+  font-size: 0.72rem;
+}
+
+.map-layer-panel {
+  width: min(302px, calc(100vw - 2rem));
+  transform-origin: top right;
+  animation: layerPanelIn 0.16s ease-out;
+}
+
+@keyframes layerPanelIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.map-layer-panel.hidden {
+  display: none !important;
+}
+
+.layer-toggle-card.in-map-layer-card {
+  margin-top: 0;
+  overflow: hidden;
+  border: 1px solid rgba(126, 2, 30, 0.16);
+  border-radius: 1.18rem;
+  background: rgba(245, 235, 208, 0.97);
+  box-shadow: 0 22px 58px rgba(63, 42, 8, 0.2);
+  backdrop-filter: blur(18px);
+}
+
+.layer-toggle-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.78rem 0.85rem;
+  border-bottom: 1px solid rgba(245, 235, 208, 0.2);
+  background: var(--primary);
+  color: var(--cream);
+}
+
+.layer-toggle-head h4 {
+  margin: 0;
+  color: var(--cream);
+  font-size: 0.9rem;
+  font-weight: 950;
+}
+
+.layer-toggle-head p {
+  margin-top: 0.18rem;
+  color: rgba(245, 235, 208, 0.82);
+  font-size: 0.72rem;
+  line-height: 1.45;
+  font-weight: 700;
+}
+
+.layer-toggle-head > i {
+  color: var(--cream);
+}
+
+.layer-toggle-list {
+  display: grid;
+  gap: 0.45rem;
+  padding: 0.68rem;
+}
+
+.layer-toggle-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.58rem;
+  border: 1px solid rgba(126, 2, 30, 0.14);
+  border-radius: 0.95rem;
+  background: rgba(245, 235, 208, 0.9);
+  padding: 0.58rem 0.62rem;
+  cursor: pointer;
+  transition:
+    transform 0.18s ease,
+    background 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.layer-toggle-item:hover {
+  transform: translateX(2px);
+  background: rgba(126, 2, 30, 0.08);
+  border-color: rgba(126, 2, 30, 0.24);
+}
+
+.layer-toggle-item input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.toggle-ui {
+  position: relative;
+  width: 2.15rem;
+  height: 1.18rem;
+  border-radius: 999px;
+  background: rgba(126, 2, 30, 0.24);
+  box-shadow: inset 0 0 0 1px rgba(63, 42, 8, 0.08);
+  transition: background 0.18s ease;
+}
+
+.toggle-ui::after {
+  content: "";
+  position: absolute;
+  top: 0.17rem;
+  left: 0.17rem;
+  width: 0.84rem;
+  height: 0.84rem;
+  border-radius: 999px;
+  background: var(--cream);
+  box-shadow: 0 2px 6px rgba(63, 42, 8, 0.18);
+  transition: transform 0.18s ease;
+}
+
+.layer-toggle-item input:checked + .toggle-ui {
+  background: var(--primary);
+}
+
+.layer-toggle-item input:checked + .toggle-ui::after {
+  transform: translateX(0.96rem);
+}
+
+.layer-toggle-icon {
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 0.68rem;
+  background: var(--primary);
+  color: var(--cream);
+  font-size: 0.78rem;
+}
+
+.layer-toggle-text {
+  min-width: 0;
+  display: grid;
+  gap: 0.08rem;
+}
+
+.layer-toggle-text strong,
+.layer-toggle-text small {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--primary);
+}
+
+.layer-toggle-text strong {
+  font-size: 0.78rem;
+  line-height: 1.2;
+  font-weight: 950;
+}
+
+.layer-toggle-text small {
+  font-size: 0.66rem;
+  line-height: 1.25;
+  font-weight: 750;
+}
+
+/* Leaflet/QGIS2Web polishing */
+.leaflet-container {
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+}
+
+.leaflet-control-zoom a,
+.leaflet-control-measure a,
+.leaflet-control-search .search-button,
+.gcd-gl-btn {
+  border-radius: 0.85rem !important;
+}
+
+.leaflet-bar,
+.leaflet-control-layers,
+.leaflet-control-search,
+.leaflet-photon {
+  border: 0 !important;
+  border-radius: 0.95rem !important;
+  box-shadow: 0 12px 35px rgba(28, 25, 23, 0.16) !important;
+  overflow: hidden;
+}
+
+.leaflet-control-attribution {
+  border-radius: 0.8rem 0 0 0;
+  background: rgba(245, 235, 208, 0.78) !important;
+  color: var(--primary) !important;
+  font-size: 10px;
+}
+
+.leaflet-tooltip.css_gadm41_IDN_2_2,
+.css_gadm41_IDN_2_2 {
+  border: 0 !important;
+  border-radius: 0.55rem !important;
+  background: rgba(245, 235, 208, 0.88) !important;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08) !important;
+  color: var(--primary) !important;
+  font-weight: 900 !important;
+  padding: 0.16rem 0.42rem !important;
+}
+
+.qgis-layer-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 900;
+  color: var(--primary);
+}
+
+.qgis-layer-label i {
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 0.58rem;
+  background: rgba(126, 2, 30, 0.1);
+  color: var(--primary);
+  font-size: 0.72rem;
+}
+
+/* Popup marker kampus dan wilayah */
+.leaflet-popup {
+  max-width: calc(100vw - 28px) !important;
+}
+
+.modern-campus-popup .leaflet-popup-content-wrapper,
+.modern-region-popup .leaflet-popup-content-wrapper,
+.leaflet-popup-content-wrapper {
+  width: min(320px, calc(100vw - 36px)) !important;
+  max-width: calc(100vw - 36px) !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(126, 2, 30, 0.18) !important;
+  border-radius: 16px !important;
+  background: rgba(255, 250, 240, 0.98) !important;
+  box-shadow: 0 22px 65px rgba(28, 25, 23, 0.22) !important;
+  padding: 0 !important;
+}
+
+.modern-campus-popup .leaflet-popup-content,
+.modern-region-popup .leaflet-popup-content,
+.leaflet-popup-content {
+  width: 100% !important;
+  max-width: 100% !important;
+  max-height: none !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  line-height: 1.5;
+}
+
+.leaflet-popup-tip {
+  background: rgba(255, 250, 240, 0.98) !important;
+  box-shadow: 0 12px 25px rgba(28, 25, 23, 0.12) !important;
+}
+
+.campus-popup,
+.region-popup {
+  display: flex !important;
+  flex-direction: column !important;
+  max-height: min(58vh, 380px) !important;
+  overflow: hidden !important;
+  color: var(--primary);
+}
+
+.campus-popup-head,
+.region-popup-head {
+  position: relative !important;
+  z-index: 5 !important;
+  flex: 0 0 auto !important;
+  display: flex;
+  align-items: center;
+  gap: 0.48rem !important;
+  padding: 0.72rem 2.8rem 0.72rem 0.75rem !important;
+  border-bottom: 1px solid rgba(245, 235, 208, 0.18);
+  background: var(--primary) !important;
+  color: var(--cream) !important;
+}
+
+.campus-popup-head > div,
+.region-popup-head > div {
+  min-width: 0;
+}
+
+.campus-popup-badge,
+.region-popup-badge {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 1.85rem !important;
+  height: 1.85rem !important;
+  border-radius: 0.62rem !important;
+  background: var(--cream) !important;
+  color: var(--primary) !important;
+  font-size: 0.7rem !important;
+}
+
+.campus-popup h3,
+.region-popup h3 {
+  margin: 0;
+  color: var(--cream) !important;
+  font-size: 0.78rem !important;
+  line-height: 1.2 !important;
+  font-weight: 900;
+  overflow-wrap: anywhere;
+}
+
+.campus-popup p,
+.region-popup p {
+  margin: 0.12rem 0 0;
+  color: rgba(245, 235, 208, 0.8) !important;
+  font-size: 0.6rem !important;
+  font-weight: 800;
+}
+
+.campus-popup-body,
+.region-popup-body {
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  display: grid;
+  gap: 0.32rem !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  padding: 0.65rem 0.72rem 0.75rem !important;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(126, 2, 30, 0.55) rgba(245, 235, 208, 0.8);
+}
+
+.campus-popup-row,
+.region-popup-row {
+  display: grid;
+  grid-template-columns: 1.16rem minmax(0, 1fr) !important;
+  align-items: flex-start;
+  gap: 0.34rem !important;
+}
+
+.campus-popup-icon,
+.region-popup-icon {
+  display: grid;
+  place-items: center;
+  width: 1.08rem !important;
+  height: 1.08rem !important;
+  border-radius: 0.38rem !important;
+  background: rgba(126, 2, 30, 0.1);
+  color: var(--primary);
+  font-size: 0.5rem !important;
+}
+
+.campus-popup-label,
+.region-popup-label {
+  display: block;
+  color: rgba(126, 2, 30, 0.84);
+  font-size: 0.48rem !important;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.025em !important;
+}
+
+.campus-popup-text,
+.region-popup-text {
+  display: block;
+  margin-top: 0.07rem;
+  color: var(--primary);
+  font-size: 0.63rem !important;
+  line-height: 1.3 !important;
+  font-weight: 750;
+  overflow-wrap: anywhere;
+}
+
+.popup-link {
+  color: var(--primary);
+  font-weight: 900;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.campus-popup-empty {
+  padding: 0.65rem;
+  border-radius: 0.9rem;
+  background: rgba(126, 2, 30, 0.06);
+  color: var(--primary) !important;
+}
+
+.leaflet-popup-close-button {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.modern-campus-popup .leaflet-popup-close-button,
+.modern-region-popup .leaflet-popup-close-button {
+top: 12px !important;
+  right: 14px !important;
+  z-index: 30 !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 0 !important;
+  background: transparent !important;
+  color: var(--cream) !important;
+  font-size: 25px !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.55) !important;
+}
+
+.modern-campus-popup .leaflet-popup-close-button:hover,
+.modern-region-popup .leaflet-popup-close-button:hover {
+  color: #fff !important;
+  background: transparent !important;
+}
+
+.leaflet-popup-content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.76rem;
+}
+
+.leaflet-popup-content table td,
+.leaflet-popup-content table th {
+  padding: 0.4rem 0.5rem;
+  border-bottom: 1px solid rgba(203, 169, 91, 0.24);
+  text-align: left;
+}
+
+.leaflet-popup-content table th {
+  color: var(--primary);
+  font-weight: 900;
+}
+
+/* Marker kampus */
+.leaflet-pane[class*="pane_kampus_sumbar_3"],
+.leaflet-marker-pane {
+  z-index: 650 !important;
+  pointer-events: auto !important;
+}
+
+.campus-marker-wrapper {
+  width: 32px !important;
+  height: 32px !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+.campus-marker-pin {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: var(--primary);
+  border: 2px solid var(--cream);
+}
+
+.campus-marker-pin img {
+  display: block;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.campus-marker-fallback {
+  display: grid !important;
+  place-items: center;
+  width: 30px !important;
+  height: 30px !important;
+  border-radius: 999px;
+  border: 2px solid var(--cream);
+  background: var(--primary);
+  color: var(--cream) !important;
+  box-shadow: 0 8px 18px rgba(63, 42, 8, 0.28);
+  font-size: 13px;
+}
+
+.campus-marker-fallback i {
+  color: var(--cream) !important;
+}
+
+@media (min-width: 1024px) {
+  #legenda {
+    align-self: start;
+  }
+}
+
+@media (max-width: 767px) {
+  #mobileMenu {
+    top: 4.25rem !important;
+  }
+}
+
+@media (max-width: 640px) {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 26px;
+    overflow-x: hidden;
+  }
+
+   .leaflet-tooltip.css_gadm41_IDN_2_2 div {
+    font-size: 7px !important;
+    line-height: 1.2 !important;
+  }
+
+  .leaflet-tooltip.css_gadm41_IDN_2_2 {
+    padding: 0.1rem 0.28rem !important;
+    border-radius: 0.35rem !important;
+  }
+  .region-legend-panel {
+    margin-top: 0.6rem;
+    border-radius: 0.95rem;
+  }
+
+  .campus-marker-wrapper {
+    width: 24px !important;
+    height: 24px !important;
+  }
+
+  .campus-marker-pin {
+    width: 24px !important;
+    height: 24px !important;
+    border-width: 1.5px !important;
+  }
+
+  .campus-marker-pin img {
+    width: 17px !important;
+    height: 17px !important;
+  }
+
+  .region-legend-grid.compact-region-grid img {
+    width: 0.8rem;
+    height: 0.8rem;
+  }
+  .region-legend-header {
+    gap: 0.55rem;
+    padding: 0.68rem;
+  }
+
+  .region-legend-header h4 {
+    font-size: 0.78rem;
+  }
+
+  .region-legend-header p {
+    font-size: 0.64rem;
+    line-height: 1.4;
+  }
+
+  .region-legend-header > span {
+    padding: 0.22rem 0.42rem;
+    font-size: 0.6rem;
+  }
+
+  .legend-note {
+    gap: 0.55rem;
+    margin-top: 0.65rem;
+    padding: 0.65rem;
+    font-size: 0.66rem;
+    line-height: 1.45;
+  }
+
+  .region-legend-grid.compact-region-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-height: 205px;
+    padding: 0.65rem;
+  }
+
+  .region-legend-grid.compact-region-grid span {
+    gap: 0.34rem;
+    padding: 0.4rem 0.42rem;
+    font-size: 0.66rem;
+  }
+
+  .region-legend-grid.compact-region-grid i {
+    width: 0.58rem;
+    height: 0.58rem;
+    border-radius: 0.18rem;
+  }
+
+  .map-search-panel {
+    padding: 0.62rem;
+    border-radius: 0.9rem;
+  }
+
+  .map-search-row {
+    gap: 0.48rem;
+  }
+
+  .map-search-icon {
+    width: 1.85rem;
+    height: 1.85rem;
+    border-radius: 0.65rem;
+  }
+
+  #univSearch {
+    font-size: 0.8rem;
+  }
+
+  #clearUnivSearch {
+    padding: 0.3rem 0.48rem;
+    font-size: 0.68rem;
+  }
+
+  .search-suggestions {
+    left: 0.62rem;
+    right: 0.62rem;
+    max-height: 210px;
+  }
+
+  .search-suggestion-title {
+    font-size: 0.73rem;
+  }
+
+  .search-suggestion-meta {
+    font-size: 0.62rem;
+  }
+
+  .map-canvas-wrapper {
+    border-radius: 0.95rem;
+  }
+
+  .map-layer-widget {
+    top: 0.62rem;
+    right: 0.62rem;
+    z-index: 700;
+    gap: 0.42rem;
+  }
+
+  .map-layer-button {
+    padding: 0.40rem 0.40rem;
+    font-size: 10px;
+    box-shadow: 0 10px 24px rgba(63, 42, 8, 0.16);
+  }
+
+  .map-layer-button i {
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 0.48rem;
+    font-size: 0.65rem;
+  }
+
+  .map-layer-panel {
+    width: min(230px, calc(100vw - 1rem));
+  }
+
+  .layer-toggle-head {
+    padding: 0.64rem 0.68rem;
+  }
+
+  .layer-toggle-head h4 {
+    font-size: 10px;
+  }
+
+  .layer-toggle-head p {
+    font-size: 8px;
+  }
+
+  .layer-toggle-list {
+    gap: 0.36rem;
+    padding: 6px;
+  }
+
+  .layer-toggle-item {
+    gap: 6px;
+    padding: 0.20rem;
+    border-radius: 0.76rem;
+  }
+
+  .layer-toggle-icon {
+    width: 1.35rem;
+    height: 1.35rem;
+    border-radius: 0.55rem;
+    font-size: 0.48rem;
+  }
+
+  .layer-toggle-text strong {
+    font-size: 10px;
+  }
+
+  .layer-toggle-text small {
+    font-size: 8px;
+  }
+
+  .toggle-ui {
+    width: 1.95rem;
+    height: 1.08rem;
+  }
+
+  .toggle-ui::after {
+    width: 0.74rem;
+    height: 0.74rem;
+  }
+
+  .layer-toggle-item input:checked + .toggle-ui::after {
+    transform: translateX(0.86rem);
+  }
+
+  .modern-campus-popup .leaflet-popup-content-wrapper,
+  .modern-region-popup .leaflet-popup-content-wrapper {
+    width: min(200px, calc(100vw - 30px)) !important;
+  }
+
+  .campus-popup,
+  .region-popup {
+    max-height: min(34vh, 250px) !important;
+  }
+
+  .campus-popup-head,
+  .region-popup-head {
+    padding: 0.65rem 2.5rem 0.65rem 0.65rem !important;
+  }
+
+  .campus-popup-icon,
+  .region-popup-icon {
+    width: 0.5rem !important;
+    height: 0.5rem !important;
+    border-radius: 0.3rem !important;
+    font-size: 0.42rem !important;
+  }
+
+  .campus-popup-row,
+  .region-popup-row {
+    grid-template-columns: 0.95rem minmax(0, 1fr) !important;
+    gap: 0.28rem !important;
+  }
+
+  .campus-popup-body,
+  .region-popup-body {
+    padding: 0.55rem 0.6rem 0.65rem !important;
+  }
+
+  .modern-campus-popup .leaflet-popup-close-button,
+  .modern-region-popup .leaflet-popup-close-button {
+    top: 10px !important;
+    right: 12px !important;
+    font-size: 14px !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .map-layer-panel {
+    width: min(252px, calc(100vw - 1rem));
+  }
+
+  .region-legend-grid.compact-region-grid {
+    max-height: 190px;
+  }
+
+  .modern-campus-popup .leaflet-popup-content-wrapper,
+  .modern-region-popup .leaflet-popup-content-wrapper {
+    width: min(206px, calc(100vw - 28px)) !important;
+  }
+
+  .campus-popup,
+  .region-popup {
+    max-height: min(32vh, 220px) !important;
+  }
+
+  .campus-popup h3,
+  .region-popup h3 {
+    font-size: 10px !important;
+  }
+
+  .campus-popup-text,
+  .region-popup-text {
+    font-size: 8px !important;
+  }
+}
