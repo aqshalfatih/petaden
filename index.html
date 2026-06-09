@@ -1344,6 +1344,82 @@
         );
       }
 
+      // Helper tombol Google Maps pada popup kampus.
+      function parseCoordinate(value) {
+        if (!hasValue(value)) return NaN;
+        return parseFloat(String(value).trim().replace(",", "."));
+      }
+
+      function getCampusCoordinates(feature, props) {
+        var lat = parseCoordinate(props["LATITUDE"]);
+        var lng = parseCoordinate(props["LONGITUDE"]);
+
+        if (
+          (!isFinite(lat) || !isFinite(lng)) &&
+          feature.geometry &&
+          Array.isArray(feature.geometry.coordinates)
+        ) {
+          lng = parseCoordinate(feature.geometry.coordinates[0]);
+          lat = parseCoordinate(feature.geometry.coordinates[1]);
+        }
+
+        if (!isFinite(lat) || !isFinite(lng)) return null;
+        return { lat: lat, lng: lng };
+      }
+
+      function mapsLocationUrl(lat, lng) {
+        return (
+          "https://www.google.com/maps/search/?api=1&query=" +
+          encodeURIComponent(lat + "," + lng)
+        );
+      }
+
+      function mapsDirectionUrl(lat, lng, origin) {
+        var url =
+          "https://www.google.com/maps/dir/?api=1&destination=" +
+          encodeURIComponent(lat + "," + lng) +
+          "&travelmode=driving";
+        if (origin) {
+          url += "&origin=" + encodeURIComponent(origin);
+        }
+        return url;
+      }
+
+      window.petadenOpenCampusLocation = function (lat, lng) {
+        var url = mapsLocationUrl(lat, lng);
+        var mapWindow = window.open(url, "_blank");
+        if (mapWindow) mapWindow.opener = null;
+        else window.location.href = url;
+      };
+
+      window.petadenOpenCampusRoute = function (lat, lng) {
+        // Langsung buka Google Maps Directions.
+        // Origin sengaja tidak diisi agar Google Maps memakai lokasi perangkat user.
+        // Cara ini menghindari tab kosong about:blank saat browser menunggu izin lokasi.
+        var url = mapsDirectionUrl(lat, lng);
+        var mapWindow = window.open(url, "_blank");
+        if (mapWindow) mapWindow.opener = null;
+        else window.location.href = url;
+      };
+
+      function popupActionButtons(coords) {
+        if (!coords) return "";
+        return (
+          '<div class="campus-popup-actions">' +
+          '<button type="button" class="campus-popup-btn campus-popup-btn-location" onclick="window.petadenOpenCampusLocation(' +
+          coords.lat +
+          "," +
+          coords.lng +
+          ')"><i class="fas fa-map-marker-alt"></i><span>Lihat Lokasi</span></button>' +
+          '<button type="button" class="campus-popup-btn campus-popup-btn-route" onclick="window.petadenOpenCampusRoute(' +
+          coords.lat +
+          "," +
+          coords.lng +
+          ')"><i class="fas fa-route"></i><span>Lihat Rute</span></button>' +
+          "</div>"
+        );
+      }
+
       function regionPopupRow(icon, label, key, props) {
         if (!hasValue(props[key])) return "";
         return (
@@ -1402,6 +1478,7 @@
           "JUMLAH_PRODI",
           props,
         );
+        var coords = getCampusCoordinates(feature, props);
         var popupContent =
           '<div class="campus-popup">' +
           '<div class="campus-popup-head">' +
@@ -1414,6 +1491,7 @@
           (rows ||
             '<p class="campus-popup-empty">Tidak ada detail atribut tambahan.</p>') +
           "</div>" +
+          popupActionButtons(coords) +
           "</div>";
         layer.bindPopup(popupContent, {
           maxWidth: 260,
