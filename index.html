@@ -12,10 +12,10 @@
     <link rel="stylesheet" href="css/qgis2web.css" />
     <link rel="stylesheet" href="css/fontawesome-all.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"> 
     <link rel="stylesheet" href="css/leaflet-search.css" />
     <link rel="stylesheet" href="css/leaflet.photon.css" />
     <link rel="stylesheet" href="css/leaflet-measure.css" />
-
     <!-- UI assets -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -25,16 +25,6 @@
     <link rel="icon" type="image/png" href="images/logo/logo-petaden.png" />
   </head>
   <body class="min-h-screen overflow-x-hidden bg-[#f5ebd0] pt-[60px] text-[#7e021e] antialiased sm:pt-[64px]">
-
-    <!-- Tampilan Loading-->
-    <div id="preloader"
-      class="fixed inset-0 z-[9999] flex items-center justify-center bg-[#7e021e] transition-opacity duration-500">
-      <div class="mx-4 rounded-2xl border border-[#f5ebd0]/25 bg-[#f5ebd0]/85 px-5 py-4 text-center shadow-2xl shadow-[#7e021e]/10 backdrop-blur-xl sm:rounded-[1.7rem] sm:px-6 sm:py-5">
-        <div class="mx-auto mb-3 h-11 w-11 animate-spin rounded-full border-4 border-[#f5ebd0] border-t-[#7e021e]"></div>
-        <p class="text-sm font-extrabold text-[#7e021e]">Memuat PetaDen...</p>
-      </div>
-    </div>
-
     <header class="fixed left-0 right-0 top-0 z-[1100] border-b border-[#7e021e]/10 bg-[#f5ebd0]/95 shadow-sm shadow-[#7e021e]/5 backdrop-blur-xl">
 
       <!-- Navbar -->
@@ -110,20 +100,20 @@
         <div class="absolute -right-24 top-8 -z-10 h-80 w-80 rounded-full bg-[#7e021e]/10 blur-3xl"></div>
         <div class="absolute -left-24 bottom-0 -z-10 h-72 w-72 rounded-full bg-[#7e021e]/10 blur-3xl"></div>
         <div class="mx-auto flex max-w-5xl flex-col items-center px-4 py-32 text-center sm:px-6 sm:py-14 lg:px-8 lg:py-10">
-          <span class="inline-flex max-w-full items-center gap-2 rounded-full border border-[#7e021e]/15 bg-[#f5ebd0]/80 px-3 py-1.5 text-[8px] font-black uppercase tracking-[0.14em] text-[#7e021e] shadow-sm backdrop-blur sm:px-4 sm:py-2 sm:text-[15px] sm:tracking-[0.18em]">
+          <span class="inline-flex max-w-full items-center gap-2 rounded-full border border-[#7e021e]/15 bg-[#f5ebd0]/80 px-3 py-1.5 text-[8px] font-black uppercase tracking-[0.14em] text-[#7e021e] shadow-sm backdrop-blur sm:px-4 sm:py-2 sm:text-[15px] sm:tracking-[0.18em]" data-aos="fade-up" data-aos-delay="100">
             <i class="fas fa-graduation-cap"></i> 
             Sebaran Perguruan Tinggi Sumatera Barat
           </span>
-          <h1 class="mt-4 max-w-4xl text-[40px] font-black leading-[1.08] tracking-[-0.045em] text-[#7e021e] sm:mt-5 md:text-5xl lg:text-8xl lg:tracking-[-0.055em]">Peta Sebaran Perguruan Tinggi di Sumatera Barat</h1>
-          <p class="mt-4 max-w-4xl text-sm leading-6 text-[#7e021e]/85 sm:mt-5 sm:text-base sm:leading-7 md:text-lg md:leading-8">
+          <h1 class="mt-4 max-w-4xl text-[40px] font-black leading-[1.08] tracking-[-0.045em] text-[#7e021e] sm:mt-5 md:text-5xl lg:text-[86px] lg:tracking-[-0.055em]" data-aos="fade-up" data-aos-delay="300">Peta Sebaran Perguruan Tinggi di Sumatera Barat</h1>
+          <p class="mt-4 max-w-4xl text-sm leading-6 text-[#7e021e]/85 sm:mt-5 sm:text-base sm:leading-7 md:text-lg md:leading-8" data-aos="fade-up" data-aos-delay="500">
              "Jelajahi kampus, kenali wilayah, temukan arah pendidikan tinggi di Ranah Minang"
           </p>
           <div class="mt-6 flex w-full max-w-md flex-col justify-center gap-2.5 sm:mt-7 sm:flex-row sm:gap-3">
-            <a href="#peta" class="inline-flex items-center justify-center gap-2 rounded-full bg-[#7e021e] px-5 py-2.5 text-[0.82rem] font-extrabold !text-[#f5ebd0] shadow-xl shadow-[#7e021e]/15 transition hover:-translate-y-1 hover:bg-[#5f0116] sm:px-6 sm:py-3 sm:text-sm">
+            <a href="#peta" class="inline-flex items-center justify-center gap-2 rounded-full bg-[#7e021e] px-5 py-2.5 text-[0.82rem] font-extrabold !text-[#f5ebd0] shadow-xl shadow-[#7e021e]/15 transition hover:-translate-y-1 hover:bg-[#5f0116] sm:px-6 sm:py-3 sm:text-sm" data-aos="fade-up-right" data-aos-delay="700">
               <i class="fas fa-map !text-white"></i>
               <span class="!text-white">Lihat Peta</span>
             </a>
-            <a href="#tentang" class="inline-flex items-center justify-center gap-2 rounded-full border border-[#7e021e]/15 bg-[#f5ebd0] px-5 py-2.5 text-[0.82rem] font-extrabold !text-[#7e021e] shadow-sm transition hover:-translate-y-1 hover:bg-[#7e021e]/10 sm:px-6 sm:py-3 sm:text-sm">
+            <a href="#tentang" class="inline-flex items-center justify-center gap-2 rounded-full border border-[#7e021e]/15 bg-[#f5ebd0] px-5 py-2.5 text-[0.82rem] font-extrabold !text-[#7e021e] shadow-sm transition hover:-translate-y-1 hover:bg-[#7e021e]/10 sm:px-6 sm:py-3 sm:text-sm" data-aos="fade-up-left" data-aos-delay="700">
               <i class="fas fa-info-circle !text-[#7e021e]"></i>
               <span class="!text-[#7e021e]">Tentang Website</span>
             </a>
@@ -728,6 +718,7 @@
       <i class="fas fa-arrow-up"></i>
     </button>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="js/qgis2web_expressions.js"></script>
     <script src="js/leaflet.js"></script>
     <script src="js/L.Control.Layers.Tree.min.js"></script>
@@ -747,7 +738,15 @@
     <script src="data/SebaranAkademi_5.js"></script>
     <script src="data/SebaranInstitut_6.js"></script>
     <script src="data/SebaranPoliteknik_7.js"></script>
-    
+
+    <script>
+      AOS.init({
+        duration: 1000,
+        easing: 'ease-out',
+        once: false
+      });
+    </script>
+
     <script>
       var highlightLayer;
       function highlightFeature(e) {
