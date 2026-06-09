@@ -1,4 +1,3 @@
-
 :root {
   --primary: #7e021e;
   --cream: #f5ebd0;
@@ -78,7 +77,6 @@ section[id] {
   position: relative;
 }
 
-/* Sembunyikan kontrol layer bawaan Leaflet; layer dikontrol lewat tombol custom di dalam peta. */
 .petaden-layer-control,
 .edumap-layer-control,
 .leaflet-control-layers.petaden-layer-control,
@@ -199,7 +197,6 @@ section[id] {
   width: 0.72rem;
   height: 0.72rem;
   border-radius: 0.25rem;
-
 }
 
 .legend-note {
@@ -377,12 +374,12 @@ section[id] {
 
 .map-layer-widget {
   position: absolute;
-  top: 0.85rem;
-  right: 0.85rem;
+  top: 0.65rem;
+  right: 0.65rem;
   z-index: 760;
   display: grid;
   justify-items: end;
-  gap: 0.55rem;
+  gap: 0.4rem;
   pointer-events: none;
 }
 
@@ -394,14 +391,14 @@ section[id] {
 .map-layer-button {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.36rem;
   border: 1px solid rgba(126, 2, 30, 0.18);
   border-radius: 999px;
   background: var(--primary);
-  box-shadow: 0 14px 34px rgba(63, 42, 8, 0.16);
-  padding: 0.62rem 0.85rem;
+  box-shadow: 0 12px 28px rgba(63, 42, 8, 0.16);
+  padding: 0.44rem 0.62rem;
   color: var(--cream);
-  font-size: 0.82rem;
+  font-size: 0.68rem;
   font-weight: 950;
   transition:
     transform 0.18s ease,
@@ -417,16 +414,17 @@ section[id] {
 .map-layer-button i {
   display: grid;
   place-items: center;
-  width: 1.45rem;
-  height: 1.45rem;
-  border-radius: 0.58rem;
+  width: 1.12rem;
+  height: 1.12rem;
+  border-radius: 0.45rem;
   background: var(--cream);
   color: var(--primary);
-  font-size: 0.72rem;
+  font-size: 0.56rem;
 }
 
 .map-layer-panel {
-  width: min(302px, calc(100vw - 2rem));
+  width: min(244px, calc(100vw - 1rem));
+  max-height: calc(100vh - 5.5rem);
   transform-origin: top right;
   animation: layerPanelIn 0.16s ease-out;
 }
@@ -450,9 +448,9 @@ section[id] {
   margin-top: 0;
   overflow: hidden;
   border: 1px solid rgba(126, 2, 30, 0.16);
-  border-radius: 1.18rem;
+  border-radius: 1rem;
   background: rgba(245, 235, 208, 0.97);
-  box-shadow: 0 22px 58px rgba(63, 42, 8, 0.2);
+  box-shadow: 0 18px 46px rgba(63, 42, 8, 0.2);
   backdrop-filter: blur(18px);
 }
 
@@ -460,8 +458,8 @@ section[id] {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.75rem;
-  padding: 0.78rem 0.85rem;
+  gap: 0.5rem;
+  padding: 0.58rem 0.65rem;
   border-bottom: 1px solid rgba(245, 235, 208, 0.2);
   background: var(--primary);
   color: var(--cream);
@@ -470,26 +468,29 @@ section[id] {
 .layer-toggle-head h4 {
   margin: 0;
   color: var(--cream);
-  font-size: 0.9rem;
+  font-size: 0.74rem;
   font-weight: 950;
 }
 
 .layer-toggle-head p {
-  margin-top: 0.18rem;
+  margin-top: 0.12rem;
   color: rgba(245, 235, 208, 0.82);
-  font-size: 0.72rem;
-  line-height: 1.45;
+  font-size: 0.58rem;
+  line-height: 1.35;
   font-weight: 700;
 }
 
 .layer-toggle-head > i {
   color: var(--cream);
+  font-size: 0.72rem;
 }
 
 .layer-toggle-list {
   display: grid;
-  gap: 0.45rem;
-  padding: 0.68rem;
+  gap: 0.32rem;
+  max-height: min(360px, calc(100vh - 9rem));
+  overflow-y: auto;
+  padding: 0.48rem;
 }
 
 .layer-toggle-item {
@@ -497,11 +498,11 @@ section[id] {
   display: grid;
   grid-template-columns: auto auto minmax(0, 1fr);
   align-items: center;
-  gap: 0.58rem;
+  gap: 0.4rem;
   border: 1px solid rgba(126, 2, 30, 0.14);
-  border-radius: 0.95rem;
+  border-radius: 0.75rem;
   background: rgba(245, 235, 208, 0.9);
-  padding: 0.58rem 0.62rem;
+  padding: 0.4rem 0.45rem;
   cursor: pointer;
   transition:
     transform 0.18s ease,
@@ -524,8 +525,8 @@ section[id] {
 
 .toggle-ui {
   position: relative;
-  width: 2.15rem;
-  height: 1.18rem;
+  width: 1.62rem;
+  height: 0.9rem;
   border-radius: 999px;
   background: rgba(126, 2, 30, 0.24);
   box-shadow: inset 0 0 0 1px rgba(63, 42, 8, 0.08);
@@ -535,10 +536,10 @@ section[id] {
 .toggle-ui::after {
   content: "";
   position: absolute;
-  top: 0.17rem;
-  left: 0.17rem;
-  width: 0.84rem;
-  height: 0.84rem;
+  top: 0.13rem;
+  left: 0.13rem;
+  width: 0.64rem;
+  height: 0.64rem;
   border-radius: 999px;
   background: var(--cream);
   box-shadow: 0 2px 6px rgba(63, 42, 8, 0.18);
@@ -550,24 +551,24 @@ section[id] {
 }
 
 .layer-toggle-item input:checked + .toggle-ui::after {
-  transform: translateX(0.96rem);
+  transform: translateX(0.72rem);
 }
 
 .layer-toggle-icon {
   display: grid;
   place-items: center;
-  width: 1.75rem;
-  height: 1.75rem;
-  border-radius: 0.68rem;
+  width: 1.28rem;
+  height: 1.28rem;
+  border-radius: 0.5rem;
   background: var(--primary);
   color: var(--cream);
-  font-size: 0.78rem;
+  font-size: 0.55rem;
 }
 
 .layer-toggle-text {
   min-width: 0;
   display: grid;
-  gap: 0.08rem;
+  gap: 0.03rem;
 }
 
 .layer-toggle-text strong,
@@ -580,14 +581,14 @@ section[id] {
 }
 
 .layer-toggle-text strong {
-  font-size: 0.78rem;
-  line-height: 1.2;
+  font-size: 0.65rem;
+  line-height: 1.15;
   font-weight: 950;
 }
 
 .layer-toggle-text small {
-  font-size: 0.66rem;
-  line-height: 1.25;
+  font-size: 0.53rem;
+  line-height: 1.18;
   font-weight: 750;
 }
 
@@ -875,7 +876,7 @@ section[id] {
 
 .modern-campus-popup .leaflet-popup-close-button,
 .modern-region-popup .leaflet-popup-close-button {
-top: 12px !important;
+  top: 12px !important;
   right: 14px !important;
   z-index: 30 !important;
   width: auto !important;
@@ -985,7 +986,7 @@ top: 12px !important;
     overflow-x: hidden;
   }
 
-   .leaflet-tooltip.css_gadm41_IDN_2_2 div {
+  .leaflet-tooltip.css_gadm41_IDN_2_2 div {
     font-size: 7px !important;
     line-height: 1.2 !important;
   }
@@ -994,6 +995,7 @@ top: 12px !important;
     padding: 0.1rem 0.28rem !important;
     border-radius: 0.35rem !important;
   }
+
   .region-legend-panel {
     margin-top: 0.6rem;
     border-radius: 0.95rem;
@@ -1019,6 +1021,7 @@ top: 12px !important;
     width: 0.8rem;
     height: 0.8rem;
   }
+
   .region-legend-header {
     gap: 0.55rem;
     padding: 0.68rem;
@@ -1107,79 +1110,87 @@ top: 12px !important;
   }
 
   .map-layer-widget {
-    top: 0.62rem;
-    right: 0.62rem;
+    top: 0.48rem;
+    right: 0.48rem;
     z-index: 700;
-    gap: 0.42rem;
+    gap: 0.32rem;
   }
 
   .map-layer-button {
-    padding: 0.40rem 0.40rem;
-    font-size: 10px;
+    gap: 0.28rem;
+    padding: 0.34rem 0.42rem;
+    font-size: 0.6rem;
     box-shadow: 0 10px 24px rgba(63, 42, 8, 0.16);
   }
 
   .map-layer-button i {
-    width: 1.25rem;
-    height: 1.25rem;
-    border-radius: 0.48rem;
-    font-size: 0.65rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 0.4rem;
+    font-size: 0.5rem;
   }
 
   .map-layer-panel {
-    width: min(230px, calc(100vw - 1rem));
+    width: min(205px, calc(100vw - 0.75rem));
+    max-height: calc(100vh - 4.6rem);
   }
 
   .layer-toggle-head {
-    padding: 0.64rem 0.68rem;
+    gap: 0.4rem;
+    padding: 0.48rem 0.52rem;
   }
 
   .layer-toggle-head h4 {
-    font-size: 10px;
+    font-size: 0.62rem;
   }
 
   .layer-toggle-head p {
-    font-size: 8px;
+    margin-top: 0.08rem;
+    font-size: 0.5rem;
+    line-height: 1.25;
   }
 
   .layer-toggle-list {
-    gap: 0.36rem;
-    padding: 6px;
+    gap: 0.26rem;
+    max-height: min(290px, calc(100vh - 7rem));
+    padding: 0.38rem;
   }
 
   .layer-toggle-item {
-    gap: 6px;
-    padding: 0.20rem;
-    border-radius: 0.76rem;
+    gap: 0.32rem;
+    padding: 0.34rem;
+    border-radius: 0.62rem;
   }
 
   .layer-toggle-icon {
-    width: 1.35rem;
-    height: 1.35rem;
-    border-radius: 0.55rem;
-    font-size: 0.48rem;
+    width: 1.08rem;
+    height: 1.08rem;
+    border-radius: 0.42rem;
+    font-size: 0.46rem;
   }
 
   .layer-toggle-text strong {
-    font-size: 10px;
+    font-size: 0.57rem;
   }
 
   .layer-toggle-text small {
-    font-size: 8px;
+    font-size: 0.46rem;
   }
 
   .toggle-ui {
-    width: 1.95rem;
-    height: 1.08rem;
+    width: 1.45rem;
+    height: 0.8rem;
   }
 
   .toggle-ui::after {
-    width: 0.74rem;
-    height: 0.74rem;
+    top: 0.12rem;
+    left: 0.12rem;
+    width: 0.56rem;
+    height: 0.56rem;
   }
 
   .layer-toggle-item input:checked + .toggle-ui::after {
-    transform: translateX(0.86rem);
+    transform: translateX(0.65rem);
   }
 
   .modern-campus-popup .leaflet-popup-content-wrapper,
@@ -1216,7 +1227,6 @@ top: 12px !important;
     padding: 0.55rem 0.6rem 0.65rem !important;
   }
 
-
   .campus-popup-actions {
     gap: 0.35rem;
     padding: 0.5rem 0.6rem 0.6rem;
@@ -1238,7 +1248,7 @@ top: 12px !important;
 
 @media (max-width: 390px) {
   .map-layer-panel {
-    width: min(252px, calc(100vw - 1rem));
+    width: min(198px, calc(100vw - 0.75rem));
   }
 
   .region-legend-grid.compact-region-grid {
