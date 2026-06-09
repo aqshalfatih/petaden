@@ -97,11 +97,11 @@
 
     <main id="beranda">
       <section class="relative isolate overflow-hidden bg-[#f5ebd0]">
-      <div class="absolute inset-0 z-0 bg-[url('images/bg/bg-beranda.jpeg')] bg-cover bg-center opacity-30"></div>
-      <div class="absolute inset-0 z-[1] bg-[#f5ebd0]/70"></div>
-      <div class="absolute -right-24 top-8 z-[2] h-80 w-80 rounded-full bg-[#7e021e]/10 blur-3xl"></div>
-      <div class="absolute -left-24 bottom-0 z-[2] h-72 w-72 rounded-full bg-[#7e021e]/10 blur-3xl"></div>
-      <div class="relative z-[3] mx-auto flex max-w-5xl flex-col items-center px-4 pt-36 pb-[168px] text-center sm:px-6 sm:py-32 lg:px-8 lg:pt-12 lg:pb-16">
+        <div class="absolute inset-0 z-0 bg-[url('images/bg/bg-beranda.jpeg')] bg-cover bg-center opacity-30"></div>
+        <div class="absolute inset-0 z-[1] bg-[#f5ebd0]/70"></div>
+        <div class="absolute -right-24 top-8 z-[2] h-80 w-80 rounded-full bg-[#7e021e]/10 blur-3xl"></div>
+        <div class="absolute -left-24 bottom-0 z-[2] h-72 w-72 rounded-full bg-[#7e021e]/10 blur-3xl"></div>
+        <div class="relative z-[3] mx-auto flex max-w-5xl flex-col items-center px-4 pt-36 pb-[168px] text-center sm:px-6 sm:py-32 lg:px-8 lg:pt-12 lg:pb-[72px]">
           <span class="inline-flex max-w-full items-center gap-2 rounded-full border border-[#7e021e]/15 bg-[#f5ebd0]/80 px-3 py-1.5 text-[8px] font-black uppercase tracking-[0.14em] text-[#7e021e] shadow-sm backdrop-blur sm:px-4 sm:py-2 sm:text-[15px] sm:tracking-[0.18em]" data-aos="fade-up" data-aos-delay="100">
             <i class="fas fa-graduation-cap"></i> 
             Sebaran Perguruan Tinggi Sumatera Barat
@@ -713,11 +713,13 @@
       </div>
     </footer>
 
-    <button
-      id="backToTop"
-      class="fixed bottom-5 right-5 z-[850] hidden h-11 w-11 place-items-center rounded-full bg-[#7e021e] text-[#f5ebd0] shadow-xl shadow-[#7e021e]/20 transition hover:-translate-y-1 sm:h-12 sm:w-12"
-      aria-label="Kembali ke atas"
-    >
+    <!-- Button musik -->
+    <button id="musicToggle" class="fixed bottom-[66px] right-5 z-[850] grid h-9 w-9 place-items-center rounded-full bg-[#7e021e] text-[#f5ebd0] shadow-xl shadow-[#7e021e]/20 transition hover:-translate-y-1 sm:h-10 sm:w-10" aria-label="Play musik" title="Play musik">
+      <i id="musicIcon" class="fas fa-play"></i>
+    </button>
+
+    <!-- Button kembali ke atas -->
+    <button id="backToTop" class="fixed bottom-[16px] right-5 z-[850] hidden h-9 w-9 place-items-center rounded-full bg-[#7e021e] text-[#f5ebd0] shadow-xl shadow-[#7e021e]/20 transition hover:-translate-y-1 sm:h-10 sm:w-10" aria-label="Kembali ke atas">
       <i class="fas fa-arrow-up"></i>
     </button>
 
@@ -741,40 +743,52 @@
     <script src="data/SebaranAkademi_5.js"></script>
     <script src="data/SebaranInstitut_6.js"></script>
     <script src="data/SebaranPoliteknik_7.js"></script>
-<audio id="backsound" loop preload="auto" playsinline>
-  <source src="/music/backsound.mp3" type="audio/mpeg">
-</audio>
 
-<script>
-  const backsound = document.getElementById("backsound");
+    <audio id="backsound" loop preload="none" playsinline>
+      <source src="/music/backsound.mp3" type="audio/mpeg">
+    </audio>
 
-  backsound.volume = 0.3;
+    <script>
+      const backsound = document.getElementById("backsound");
+      const musicToggle = document.getElementById("musicToggle");
+      const musicIcon = document.getElementById("musicIcon");
 
-  async function startBacksound() {
-    try {
-      backsound.muted = false;
-      await backsound.play();
+      backsound.volume = 0.2;
 
-      console.log("Backsound berhasil diputar");
+      let isMusicPlaying = false;
 
-      // Event baru dihapus kalau audio benar-benar berhasil jalan
-      document.removeEventListener("pointerdown", startBacksound);
-      document.removeEventListener("touchstart", startBacksound);
-      document.removeEventListener("touchend", startBacksound);
-      document.removeEventListener("click", startBacksound);
-      document.removeEventListener("keydown", startBacksound);
-    } catch (error) {
-      console.log("Backsound gagal diputar:", error);
-    }
-  }
+      async function playMusic() {
+        try {
+          await backsound.play();
+          isMusicPlaying = true;
 
-  // Untuk HP dan desktop
-  document.addEventListener("pointerdown", startBacksound);
-  document.addEventListener("touchstart", startBacksound);
-  document.addEventListener("touchend", startBacksound);
-  document.addEventListener("click", startBacksound);
-  document.addEventListener("keydown", startBacksound);
-</script>
+          musicIcon.className = "fas fa-pause";
+          musicToggle.setAttribute("aria-label", "Pause musik");
+          musicToggle.setAttribute("title", "Pause musik");
+
+          console.log("Backsound berhasil diputar");
+        } catch (error) {
+          console.log("Backsound gagal diputar:", error);
+        }
+      }
+
+      function pauseMusic() {
+        backsound.pause();
+        isMusicPlaying = false;
+
+        musicIcon.className = "fas fa-play";
+        musicToggle.setAttribute("aria-label", "Play musik");
+        musicToggle.setAttribute("title", "Play musik");
+      }
+
+      musicToggle.addEventListener("click", async function () {
+        if (isMusicPlaying) {
+          pauseMusic();
+        } else {
+          await playMusic();
+        }
+      });
+    </script>
     <script>
       AOS.init({
         duration: 600,
