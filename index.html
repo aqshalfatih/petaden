@@ -741,28 +741,39 @@
     <script src="data/SebaranAkademi_5.js"></script>
     <script src="data/SebaranInstitut_6.js"></script>
     <script src="data/SebaranPoliteknik_7.js"></script>
-<audio id="backsound" loop>
+<audio id="backsound" loop preload="auto" playsinline>
   <source src="/music/backsound.mp3" type="audio/mpeg">
 </audio>
 
 <script>
   const backsound = document.getElementById("backsound");
 
-  backsound.volume = 0.3; // atur volume, 0.1 - 1
+  backsound.volume = 0.3;
 
-  function playBacksound() {
-    backsound.play().catch((error) => {
-      console.log("Autoplay diblokir browser:", error);
-    });
+  async function startBacksound() {
+    try {
+      backsound.muted = false;
+      await backsound.play();
 
-    document.removeEventListener("click", playBacksound);
-    document.removeEventListener("touchstart", playBacksound);
-    document.removeEventListener("scroll", playBacksound);
+      console.log("Backsound berhasil diputar");
+
+      // Event baru dihapus kalau audio benar-benar berhasil jalan
+      document.removeEventListener("pointerdown", startBacksound);
+      document.removeEventListener("touchstart", startBacksound);
+      document.removeEventListener("touchend", startBacksound);
+      document.removeEventListener("click", startBacksound);
+      document.removeEventListener("keydown", startBacksound);
+    } catch (error) {
+      console.log("Backsound gagal diputar:", error);
+    }
   }
 
-  document.addEventListener("click", playBacksound);
-  document.addEventListener("touchstart", playBacksound);
-  document.addEventListener("scroll", playBacksound);
+  // Untuk HP dan desktop
+  document.addEventListener("pointerdown", startBacksound);
+  document.addEventListener("touchstart", startBacksound);
+  document.addEventListener("touchend", startBacksound);
+  document.addEventListener("click", startBacksound);
+  document.addEventListener("keydown", startBacksound);
 </script>
     <script>
       AOS.init({
