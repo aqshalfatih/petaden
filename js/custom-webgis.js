@@ -105,12 +105,16 @@ window.addEventListener('resize', function () {
 });
 
 
-// Kontrol layer custom PetaDen: menggantikan tampilan layer bawaan yang terlalu kaku.
+// Kontrol layer custom PetaDen: tetap memakai panel asli project, isi layer menyesuaikan file ori QGIS2Web.
 (function () {
     function getLayerByKey(key) {
         const layers = {
-            kampus: window.layer_kampus_sumbar_3,
-            wilayah: window.layer_gadm41_IDN_2_2,
+            universitas: window.layer_SebaranUniversitas_3,
+            sekolahTinggi: window.layer_SebaranSekolahTinggi_4,
+            akademi: window.layer_SebaranAkademi_5,
+            institut: window.layer_SebaranInstitut_6,
+            politeknik: window.layer_SebaranPoliteknik_7,
+            wilayah: window.layer_BatasKabupaten_2,
             relief: window.layer_ESRIShadedRelief_1,
             dasar: window.layer_Positron_0
         };
@@ -126,6 +130,10 @@ window.addEventListener('resize', function () {
         input.checked = isOnMap;
     }
 
+    function syncAllLayerToggles() {
+        document.querySelectorAll('[data-layer-toggle]').forEach(syncLayerToggle);
+    }
+
     function initCustomLayerToggles() {
         if (!window.map) return;
         document.querySelectorAll('[data-layer-toggle]').forEach(function (input) {
@@ -135,10 +143,15 @@ window.addEventListener('resize', function () {
                 if (!layer) return;
                 if (input.checked) {
                     if (!window.map.hasLayer(layer)) window.map.addLayer(layer);
+                    if (layer.bringToFront && input.dataset.layerToggle !== 'wilayah') layer.bringToFront();
                 } else {
                     if (window.map.hasLayer(layer)) window.map.removeLayer(layer);
                 }
             });
+        });
+
+        window.map.on('layeradd layerremove', function () {
+            setTimeout(syncAllLayerToggles, 0);
         });
     }
 
@@ -196,7 +209,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-// PetaDen v7: pencarian perguruan tinggi berbasis dataset QGIS2Web dengan autocomplete.
+// PetaDen v8: pencarian perguruan tinggi membaca semua layer jenis PT dari file ori QGIS2Web.
 (function () {
     function normalizeText(value) {
         return String(value || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
@@ -207,37 +220,58 @@ document.addEventListener('DOMContentLoaded', function () {
         return text && text.toLowerCase() !== 'null' && text.toLowerCase() !== 'undefined' ? text : (fallback || '');
     }
 
-    function getCampusFeatures() {
-        if (!window.json_kampus_sumbar_3 || !Array.isArray(window.json_kampus_sumbar_3.features)) return [];
-        return window.json_kampus_sumbar_3.features.map(function (feature, index) {
-            const props = feature.properties || {};
-            return {
-                index: index,
-                feature: feature,
-                name: safeText(props.NAMA_PT, 'Perguruan Tinggi'),
-                city: safeText(props.KOTA, 'Sumatera Barat'),
-                type: safeText(props.JENIS, 'Perguruan Tinggi'),
-                normalized: normalizeText([props.NAMA_PT, props.KOTA, props.JENIS, props.ALAMAT].join(' '))
-            };
-        });
+    function campusSources() {
+        return [
+            { key: 'universitas', json: window.json_SebaranUniversitas_3, layer: window.layer_SebaranUniversitas_3, type: 'Universitas' },
+            { key: 'sekolahTinggi', json: window.json_SebaranSekolahTinggi_4, layer: window.layer_SebaranSekolahTinggi_4, type: 'Sekolah Tinggi' },
+            { key: 'akademi', json: window.json_SebaranAkademi_5, layer: window.layer_SebaranAkademi_5, type: 'Akademi' },
+            { key: 'institut', json: window.json_SebaranInstitut_6, layer: window.layer_SebaranInstitut_6, type: 'Institut' },
+            { key: 'politeknik', json: window.json_SebaranPoliteknik_7, layer: window.layer_SebaranPoliteknik_7, type: 'Politeknik' }
+        ];
     }
 
-    function findLayerByFeatureName(name) {
-        if (!window.layer_kampus_sumbar_3) return null;
+    function getCampusFeatures() {
+        const items = [];
+        campusSources().forEach(function (source) {
+            if (!source.json || !Array.isArray(source.json.features)) return;
+            source.json.features.forEach(function (feature, index) {
+                const props = feature.properties || {};
+                const type = safeText(props.JENIS, source.type);
+                items.push({
+                    index: index,
+                    sourceKey: source.key,
+                    layerGroup: source.layer,
+                    feature: feature,
+                    name: safeText(props.NAMA_PT, 'Perguruan Tinggi'),
+                    city: safeText(props.KOTA, 'Sumatera Barat'),
+                    type: type,
+                    normalized: normalizeText([props.NAMA_PT, props.KOTA, type, props.ALAMAT].join(' '))
+                });
+            });
+        });
+        return items;
+    }
+
+    function findLayerByFeatureName(item) {
+        if (!item || !item.layerGroup) return null;
         let found = null;
-        window.layer_kampus_sumbar_3.eachLayer(function (layer) {
+        item.layerGroup.eachLayer(function (layer) {
             const props = (layer.feature && layer.feature.properties) || {};
-            if (safeText(props.NAMA_PT) === name) found = layer;
+            if (safeText(props.NAMA_PT) === item.name) found = layer;
         });
         return found;
     }
 
     function focusCampus(item) {
         if (!item || !window.map) return;
-        const targetLayer = findLayerByFeatureName(item.name);
-        if (!targetLayer) return;
-        if (!window.map.hasLayer(window.layer_kampus_sumbar_3)) window.map.addLayer(window.layer_kampus_sumbar_3);
+        if (item.layerGroup && !window.map.hasLayer(item.layerGroup)) {
+            window.map.addLayer(item.layerGroup);
+        }
 
+        const targetLayer = findLayerByFeatureName(item);
+        if (!targetLayer) return;
+
+        if (item.layerGroup && item.layerGroup.bringToFront) item.layerGroup.bringToFront();
         const latlng = targetLayer.getLatLng ? targetLayer.getLatLng() : null;
         if (latlng) {
             window.map.setView(latlng, Math.max(window.map.getZoom(), 14), { animate: true });
@@ -277,7 +311,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
 
-            matches.slice(0, 8).forEach(function (item, idx) {
+            matches.slice(0, 8).forEach(function (item) {
                 const button = document.createElement('button');
                 button.type = 'button';
                 button.className = 'search-suggestion-item';

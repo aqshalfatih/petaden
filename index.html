@@ -179,15 +179,49 @@
                         <i class="fas fa-cog"></i>
                       </div>
                       <div class="layer-toggle-list">
-                        <label class="layer-toggle-item ">
-                          <input type="checkbox" data-layer-toggle="kampus" checked/>
+                        <label class="layer-toggle-item">
+                          <input type="checkbox" data-layer-toggle="universitas" checked/>
                           <span class="toggle-ui"></span>
-                          <span class="layer-toggle-icon campus">
-                            <i class="fas fa-graduation-cap"></i>
-                          </span>
+                          <span class="layer-toggle-icon campus"><i class="fas fa-university"></i></span>
                           <span class="layer-toggle-text">
-                            <strong>Perguruan Tinggi</strong>
-                            <small>Marker lokasi kampus</small>
+                            <strong>Universitas</strong>
+                            <small>Layer sebaran universitas</small>
+                          </span>
+                        </label>
+                        <label class="layer-toggle-item">
+                          <input type="checkbox" data-layer-toggle="sekolahTinggi" checked/>
+                          <span class="toggle-ui"></span>
+                          <span class="layer-toggle-icon campus"><i class="fas fa-school"></i></span>
+                          <span class="layer-toggle-text">
+                            <strong>Sekolah Tinggi</strong>
+                            <small>Layer sebaran sekolah tinggi</small>
+                          </span>
+                        </label>
+                        <label class="layer-toggle-item">
+                          <input type="checkbox" data-layer-toggle="akademi" checked/>
+                          <span class="toggle-ui"></span>
+                          <span class="layer-toggle-icon campus"><i class="fas fa-book-reader"></i></span>
+                          <span class="layer-toggle-text">
+                            <strong>Akademi</strong>
+                            <small>Layer sebaran akademi</small>
+                          </span>
+                        </label>
+                        <label class="layer-toggle-item">
+                          <input type="checkbox" data-layer-toggle="institut" checked/>
+                          <span class="toggle-ui"></span>
+                          <span class="layer-toggle-icon campus"><i class="fas fa-landmark"></i></span>
+                          <span class="layer-toggle-text">
+                            <strong>Institut</strong>
+                            <small>Layer sebaran institut</small>
+                          </span>
+                        </label>
+                        <label class="layer-toggle-item">
+                          <input type="checkbox" data-layer-toggle="politeknik" checked/>
+                          <span class="toggle-ui"></span>
+                          <span class="layer-toggle-icon campus"><i class="fas fa-tools"></i></span>
+                          <span class="layer-toggle-text">
+                            <strong>Politeknik</strong>
+                            <small>Layer sebaran politeknik</small>
                           </span>
                         </label>
                         <label class="layer-toggle-item">
@@ -729,8 +763,12 @@
     <script src="js/leaflet.photon.js"></script>
     <script src="js/leaflet-measure.js"></script>
     <script src="js/leaflet-search.js"></script>
-    <script src="data/gadm41_IDN_2_2.js"></script>
-    <script src="data/kampus_sumbar_3.js"></script>
+    <script src="data/BatasKabupaten_2.js"></script>
+    <script src="data/SebaranUniversitas_3.js"></script>
+    <script src="data/SebaranSekolahTinggi_4.js"></script>
+    <script src="data/SebaranAkademi_5.js"></script>
+    <script src="data/SebaranInstitut_6.js"></script>
+    <script src="data/SebaranPoliteknik_7.js"></script>
     
     <script>
       var highlightLayer;
@@ -885,7 +923,7 @@
       );
       layer_ESRIShadedRelief_1;
       map.addLayer(layer_ESRIShadedRelief_1);
-      function pop_gadm41_IDN_2_2(feature, layer) {
+      function pop_BatasKabupaten_2(feature, layer) {
         layer.on({
           mouseout: function (e) {
             for (var i in e.target._eventParents) {
@@ -940,11 +978,11 @@
         });
       }
 
-      function style_gadm41_IDN_2_2_0(feature) {
+      function style_BatasKabupaten_2_0(feature) {
         switch (String(feature.properties["NAME_2"])) {
           case "Agam":
             return {
-              pane: "pane_gadm41_IDN_2_2",
+              pane: "pane_BatasKabupaten_2",
               opacity: 1,
               color: "rgba(35,35,35,0.415)",
               dashArray: "",
@@ -959,7 +997,7 @@
             break;
           case "Bukittinggi":
             return {
-              pane: "pane_gadm41_IDN_2_2",
+              pane: "pane_BatasKabupaten_2",
               opacity: 1,
               color: "rgba(35,35,35,0.415)",
               dashArray: "",
@@ -974,7 +1012,7 @@
             break;
           case "Danau":
             return {
-              pane: "pane_gadm41_IDN_2_2",
+              pane: "pane_BatasKabupaten_2",
               opacity: 1,
               color: "rgba(35,35,35,0.415)",
               dashArray: "",
@@ -989,7 +1027,7 @@
             break;
           case "Dharmasraya":
             return {
-              pane: "pane_gadm41_IDN_2_2",
+              pane: "pane_BatasKabupaten_2",
               opacity: 1,
               color: "rgba(35,35,35,0.415)",
               dashArray: "",
@@ -1004,7 +1042,7 @@
             break;
           case "Kepulauan Mentawai":
             return {
-              pane: "pane_gadm41_IDN_2_2",
+              pane: "pane_BatasKabupaten_2",
               opacity: 1,
               color: "rgba(35,35,35,0.415)",
               dashArray: "",
@@ -1019,7 +1057,7 @@
             break;
           case "Kota Solok":
             return {
-              pane: "pane_gadm41_IDN_2_2",
+              pane: "pane_BatasKabupaten_2",
               opacity: 1,
               color: "rgba(35,35,35,0.415)",
               dashArray: "",
@@ -1034,7 +1072,7 @@
             break;
           case "Lima Puluh Kota":
             return {
-              pane: "pane_gadm41_IDN_2_2",
+              pane: "pane_BatasKabupaten_2",
               opacity: 1,
               color: "rgba(35,35,35,0.415)",
               dashArray: "",
@@ -1049,7 +1087,7 @@
             break;
           case "Padang":
             return {
-              pane: "pane_gadm41_IDN_2_2",
+              pane: "pane_BatasKabupaten_2",
               opacity: 1,
               color: "rgba(35,35,35,0.415)",
               dashArray: "",
@@ -1064,7 +1102,7 @@
             break;
           case "Padang Panjang":
             return {
-              pane: "pane_gadm41_IDN_2_2",
+              pane: "pane_BatasKabupaten_2",
               opacity: 1,
               color: "rgba(35,35,35,0.415)",
               dashArray: "",
@@ -1079,7 +1117,7 @@
             break;
           case "Padang Pariaman":
             return {
-              pane: "pane_gadm41_IDN_2_2",
+              pane: "pane_BatasKabupaten_2",
               opacity: 1,
               color: "rgba(35,35,35,0.415)",
               dashArray: "",
@@ -1094,7 +1132,7 @@
             break;
           case "Pariaman":
             return {
-              pane: "pane_gadm41_IDN_2_2",
+              pane: "pane_BatasKabupaten_2",
               opacity: 1,
               color: "rgba(35,35,35,0.415)",
               dashArray: "",
@@ -1109,7 +1147,7 @@
             break;
           case "Pasaman":
             return {
-              pane: "pane_gadm41_IDN_2_2",
+              pane: "pane_BatasKabupaten_2",
               opacity: 1,
               color: "rgba(35,35,35,0.415)",
               dashArray: "",
@@ -1124,7 +1162,7 @@
             break;
           case "Pasaman Barat":
             return {
-              pane: "pane_gadm41_IDN_2_2",
+              pane: "pane_BatasKabupaten_2",
               opacity: 1,
               color: "rgba(35,35,35,0.415)",
               dashArray: "",
@@ -1139,7 +1177,7 @@
             break;
           case "Payakumbuh":
             return {
-              pane: "pane_gadm41_IDN_2_2",
+              pane: "pane_BatasKabupaten_2",
               opacity: 1,
               color: "rgba(35,35,35,0.415)",
               dashArray: "",
@@ -1154,7 +1192,7 @@
             break;
           case "Pesisir Selatan":
             return {
-              pane: "pane_gadm41_IDN_2_2",
+              pane: "pane_BatasKabupaten_2",
               opacity: 1,
               color: "rgba(35,35,35,0.415)",
               dashArray: "",
@@ -1169,7 +1207,7 @@
             break;
           case "Sawahlunto":
             return {
-              pane: "pane_gadm41_IDN_2_2",
+              pane: "pane_BatasKabupaten_2",
               opacity: 1,
               color: "rgba(35,35,35,0.415)",
               dashArray: "",
@@ -1184,7 +1222,7 @@
             break;
           case "Sijunjung":
             return {
-              pane: "pane_gadm41_IDN_2_2",
+              pane: "pane_BatasKabupaten_2",
               opacity: 1,
               color: "rgba(35,35,35,0.415)",
               dashArray: "",
@@ -1199,7 +1237,7 @@
             break;
           case "Solok":
             return {
-              pane: "pane_gadm41_IDN_2_2",
+              pane: "pane_BatasKabupaten_2",
               opacity: 1,
               color: "rgba(35,35,35,0.415)",
               dashArray: "",
@@ -1214,7 +1252,7 @@
             break;
           case "Solok Selatan":
             return {
-              pane: "pane_gadm41_IDN_2_2",
+              pane: "pane_BatasKabupaten_2",
               opacity: 1,
               color: "rgba(35,35,35,0.415)",
               dashArray: "",
@@ -1229,7 +1267,7 @@
             break;
           case "Tanah Datar":
             return {
-              pane: "pane_gadm41_IDN_2_2",
+              pane: "pane_BatasKabupaten_2",
               opacity: 1,
               color: "rgba(35,35,35,0.415)",
               dashArray: "",
@@ -1244,20 +1282,20 @@
             break;
         }
       }
-      map.createPane("pane_gadm41_IDN_2_2");
-      map.getPane("pane_gadm41_IDN_2_2").style.zIndex = 402;
-      map.getPane("pane_gadm41_IDN_2_2").style["mix-blend-mode"] = "normal";
-      var layer_gadm41_IDN_2_2 = new L.geoJson(json_gadm41_IDN_2_2, {
+      map.createPane("pane_BatasKabupaten_2");
+      map.getPane("pane_BatasKabupaten_2").style.zIndex = 402;
+      map.getPane("pane_BatasKabupaten_2").style["mix-blend-mode"] = "normal";
+      var layer_BatasKabupaten_2 = new L.geoJson(json_BatasKabupaten_2, {
         attribution: "",
         interactive: true,
-        dataVar: "json_gadm41_IDN_2_2",
-        layerName: "layer_gadm41_IDN_2_2",
-        pane: "pane_gadm41_IDN_2_2",
-        onEachFeature: pop_gadm41_IDN_2_2,
-        style: style_gadm41_IDN_2_2_0,
+        dataVar: "json_BatasKabupaten_2",
+        layerName: "layer_BatasKabupaten_2",
+        pane: "pane_BatasKabupaten_2",
+        onEachFeature: pop_BatasKabupaten_2,
+        style: style_BatasKabupaten_2_0,
       });
-      bounds_group.addLayer(layer_gadm41_IDN_2_2);
-      map.addLayer(layer_gadm41_IDN_2_2);
+      bounds_group.addLayer(layer_BatasKabupaten_2);
+      map.addLayer(layer_BatasKabupaten_2);
 
       // Helper popup modern: membersihkan nilai kosong agar tidak menampilkan null/undefined.
       function hasValue(value) {
@@ -1501,16 +1539,19 @@
         });
       }
 
-      // Ikon marker kampus tetap memakai asset original QGIS2Web.
-      // Dibungkus dengan divIcon agar marker tetap muncul stabil pada layout website penuh.
-      function style_kampus_sumbar_3_0() {
+      // Ikon marker kampus tetap memakai desain marker dari project PetaDen.
+      // Layer kampus dipisah berdasarkan jenis PT sesuai file ori QGIS2Web.
+      function style_petaden_campus_marker(paneName, markerTitle) {
         return {
-          pane: "pane_kampus_sumbar_3",
+          pane: paneName,
           rotationAngle: 0.0,
           rotationOrigin: "center center",
           icon: L.divIcon({
             className: "campus-marker-wrapper",
-            html: '<span class="campus-marker-pin"><img src="markers/kampus_sumbar_3.svg" alt="Marker kampus" loading="eager"></span>',
+            html:
+              '<span class="campus-marker-pin"><img src="markers/kampus_sumbar_3.svg" alt="' +
+              escapeHTML(markerTitle || "Marker kampus") +
+              '" loading="eager"></span>',
             iconSize: [32, 32],
             iconAnchor: [16, 16],
             popupAnchor: [0, -16],
@@ -1519,26 +1560,79 @@
           interactive: true,
         };
       }
-      map.createPane("pane_kampus_sumbar_3");
-      map.getPane("pane_kampus_sumbar_3").style.zIndex = 650;
-      map.getPane("pane_kampus_sumbar_3").style["mix-blend-mode"] = "normal";
-      var layer_kampus_sumbar_3 = new L.geoJson(json_kampus_sumbar_3, {
-        attribution: "",
-        interactive: true,
-        dataVar: "json_kampus_sumbar_3",
-        layerName: "layer_kampus_sumbar_3",
-        pane: "pane_kampus_sumbar_3",
-        onEachFeature: pop_kampus_sumbar_3,
-        pointToLayer: function (feature, latlng) {
-          var context = {
-            feature: feature,
-            variables: {},
-          };
-          return L.marker(latlng, style_kampus_sumbar_3_0(feature));
-        },
+
+      function createPetadenCampusLayer(options) {
+        map.createPane(options.pane);
+        map.getPane(options.pane).style.zIndex = options.zIndex;
+        map.getPane(options.pane).style["mix-blend-mode"] = "normal";
+        var campusLayer = new L.geoJson(options.json, {
+          attribution: "",
+          interactive: true,
+          dataVar: options.dataVar,
+          layerName: options.layerName,
+          pane: options.pane,
+          onEachFeature: pop_kampus_sumbar_3,
+          pointToLayer: function (feature, latlng) {
+            return L.marker(
+              latlng,
+              style_petaden_campus_marker(options.pane, options.label),
+            );
+          },
+        });
+        bounds_group.addLayer(campusLayer);
+        map.addLayer(campusLayer);
+        return campusLayer;
+      }
+
+      var layer_SebaranUniversitas_3 = createPetadenCampusLayer({
+        json: json_SebaranUniversitas_3,
+        dataVar: "json_SebaranUniversitas_3",
+        layerName: "layer_SebaranUniversitas_3",
+        pane: "pane_SebaranUniversitas_3",
+        zIndex: 650,
+        label: "Marker universitas",
       });
-      bounds_group.addLayer(layer_kampus_sumbar_3);
-      map.addLayer(layer_kampus_sumbar_3);
+      var layer_SebaranSekolahTinggi_4 = createPetadenCampusLayer({
+        json: json_SebaranSekolahTinggi_4,
+        dataVar: "json_SebaranSekolahTinggi_4",
+        layerName: "layer_SebaranSekolahTinggi_4",
+        pane: "pane_SebaranSekolahTinggi_4",
+        zIndex: 651,
+        label: "Marker sekolah tinggi",
+      });
+      var layer_SebaranAkademi_5 = createPetadenCampusLayer({
+        json: json_SebaranAkademi_5,
+        dataVar: "json_SebaranAkademi_5",
+        layerName: "layer_SebaranAkademi_5",
+        pane: "pane_SebaranAkademi_5",
+        zIndex: 652,
+        label: "Marker akademi",
+      });
+      var layer_SebaranInstitut_6 = createPetadenCampusLayer({
+        json: json_SebaranInstitut_6,
+        dataVar: "json_SebaranInstitut_6",
+        layerName: "layer_SebaranInstitut_6",
+        pane: "pane_SebaranInstitut_6",
+        zIndex: 653,
+        label: "Marker institut",
+      });
+      var layer_SebaranPoliteknik_7 = createPetadenCampusLayer({
+        json: json_SebaranPoliteknik_7,
+        dataVar: "json_SebaranPoliteknik_7",
+        layerName: "layer_SebaranPoliteknik_7",
+        pane: "pane_SebaranPoliteknik_7",
+        zIndex: 654,
+        label: "Marker politeknik",
+      });
+
+      var petadenCampusLayers = [
+        layer_SebaranUniversitas_3,
+        layer_SebaranSekolahTinggi_4,
+        layer_SebaranAkademi_5,
+        layer_SebaranInstitut_6,
+        layer_SebaranPoliteknik_7,
+      ];
+      var layer_SemuaKampus = L.layerGroup(petadenCampusLayers);
 
       // Fallback keamanan: jika browser gagal merender SVG marker, ganti ke divIcon.
       // Data spasial, layer, dan popup tetap sama; hanya tampilan ikon yang diamankan.
@@ -1554,25 +1648,27 @@
             var img = el.querySelector("img");
             return img && img.complete && img.naturalWidth === 0;
           });
-        if (needsFallback && layer_kampus_sumbar_3) {
-          layer_kampus_sumbar_3.eachLayer(function (markerLayer) {
-            if (markerLayer.setIcon) {
-              markerLayer.setIcon(
-                L.divIcon({
-                  className: "campus-marker-fallback",
-                  html: '<i class="fas fa-graduation-cap"></i>',
-                  iconSize: [30, 30],
-                  iconAnchor: [15, 15],
-                  popupAnchor: [0, -15],
-                }),
-              );
-            }
-            if (markerLayer.setZIndexOffset) markerLayer.setZIndexOffset(1000);
+        if (needsFallback) {
+          petadenCampusLayers.forEach(function (campusLayer) {
+            campusLayer.eachLayer(function (markerLayer) {
+              if (markerLayer.setIcon) {
+                markerLayer.setIcon(
+                  L.divIcon({
+                    className: "campus-marker-fallback",
+                    html: '<i class="fas fa-graduation-cap"></i>',
+                    iconSize: [30, 30],
+                    iconAnchor: [15, 15],
+                    popupAnchor: [0, -15],
+                  }),
+                );
+              }
+              if (markerLayer.setZIndexOffset) markerLayer.setZIndexOffset(1000);
+            });
           });
         }
-        if (layer_kampus_sumbar_3 && layer_kampus_sumbar_3.bringToFront) {
-          layer_kampus_sumbar_3.bringToFront();
-        }
+        petadenCampusLayers.forEach(function (campusLayer) {
+          if (campusLayer && campusLayer.bringToFront) campusLayer.bringToFront();
+        });
       }
 
       map.whenReady(function () {
@@ -1655,49 +1751,11 @@
           last.style.display = "none";
         }
       });
-      var overlaysTree = [
-        {
-          label:
-            '<span class="qgis-layer-label qgis-layer-campus"><i class="fas fa-graduation-cap"></i><span>Perguruan Tinggi</span></span>',
-          layer: layer_kampus_sumbar_3,
-        },
-        {
-          label:
-            '<span class="qgis-layer-label qgis-layer-region"><i class="fas fa-map"></i><span>Batas Wilayah</span></span>',
-          layer: layer_gadm41_IDN_2_2,
-        },
-        {
-          label:
-            '<span class="qgis-layer-label qgis-layer-basemap"><i class="fas fa-mountain"></i><span>Relief Wilayah</span></span>',
-          layer: layer_ESRIShadedRelief_1,
-        },
-        {
-          label:
-            '<span class="qgis-layer-label qgis-layer-basemap"><i class="fas fa-map"></i><span>Peta Dasar</span></span>',
-          layer: layer_Positron_0,
-        },
-      ];
-      var lay = L.control.layers.tree(null, overlaysTree, {
-        //namedToggle: true,
-        //selectorBack: false,
-        //closedSymbol: '&#8862; &#x1f5c0;',
-        //openedSymbol: '&#8863; &#x1f5c1;',
-        //collapseAll: 'Collapse all',
-        //expandAll: 'Expand all',
-        collapsed: true,
-      });
-      lay.addTo(map);
-      document.addEventListener("DOMContentLoaded", function () {
-        var controlLayersElement = document.querySelector(
-          ".leaflet-control-layers",
-        );
-        if (!controlLayersElement) return;
-        controlLayersElement.setAttribute("aria-label", "Kontrol layer peta");
-        controlLayersElement.classList.add("petaden-layer-control");
-      });
+      // Kontrol layer bawaan QGIS2Web tidak ditampilkan agar tidak double.
+      // Visibilitas layer dikontrol oleh panel custom PetaDen di kanan atas peta.
       setBounds();
       var i = 0;
-      layer_gadm41_IDN_2_2.eachLayer(function (layer) {
+      layer_BatasKabupaten_2.eachLayer(function (layer) {
         var context = {
           feature: layer.feature,
           variables: {},
@@ -1723,7 +1781,7 @@
       });
       map.addControl(
         new L.Control.Search({
-          layer: layer_kampus_sumbar_3,
+          layer: layer_SemuaKampus,
           initial: false,
           hideMarkerOnCollapse: true,
           propertyName: "NAMA_PT",
@@ -1736,15 +1794,15 @@
         document.getElementsByClassName("search-button")[1].className +=
           " fa fa-binoculars";
       }
-      resetLabels([layer_gadm41_IDN_2_2, layer_kampus_sumbar_3]);
+      resetLabels([layer_BatasKabupaten_2, layer_SebaranUniversitas_3, layer_SebaranSekolahTinggi_4, layer_SebaranAkademi_5, layer_SebaranInstitut_6, layer_SebaranPoliteknik_7]);
       map.on("zoomend", function () {
-        resetLabels([layer_gadm41_IDN_2_2, layer_kampus_sumbar_3]);
+        resetLabels([layer_BatasKabupaten_2, layer_SebaranUniversitas_3, layer_SebaranSekolahTinggi_4, layer_SebaranAkademi_5, layer_SebaranInstitut_6, layer_SebaranPoliteknik_7]);
       });
       map.on("layeradd", function () {
-        resetLabels([layer_gadm41_IDN_2_2, layer_kampus_sumbar_3]);
+        resetLabels([layer_BatasKabupaten_2, layer_SebaranUniversitas_3, layer_SebaranSekolahTinggi_4, layer_SebaranAkademi_5, layer_SebaranInstitut_6, layer_SebaranPoliteknik_7]);
       });
       map.on("layerremove", function () {
-        resetLabels([layer_gadm41_IDN_2_2, layer_kampus_sumbar_3]);
+        resetLabels([layer_BatasKabupaten_2, layer_SebaranUniversitas_3, layer_SebaranSekolahTinggi_4, layer_SebaranAkademi_5, layer_SebaranInstitut_6, layer_SebaranPoliteknik_7]);
       });
 
       // Menjaga ukuran peta tetap presisi setelah layout website selesai dirender.
