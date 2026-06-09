@@ -741,7 +741,29 @@
     <script src="data/SebaranAkademi_5.js"></script>
     <script src="data/SebaranInstitut_6.js"></script>
     <script src="data/SebaranPoliteknik_7.js"></script>
+<audio id="backsound" loop>
+  <source src="music/backsound.mp3" type="audio/mpeg">
+</audio>
 
+<script>
+  const backsound = document.getElementById("backsound");
+
+  backsound.volume = 0.3; // atur volume, 0.1 - 1
+
+  function playBacksound() {
+    backsound.play().catch((error) => {
+      console.log("Autoplay diblokir browser:", error);
+    });
+
+    document.removeEventListener("click", playBacksound);
+    document.removeEventListener("touchstart", playBacksound);
+    document.removeEventListener("scroll", playBacksound);
+  }
+
+  document.addEventListener("click", playBacksound);
+  document.addEventListener("touchstart", playBacksound);
+  document.addEventListener("scroll", playBacksound);
+</script>
     <script>
       AOS.init({
         duration: 600,
