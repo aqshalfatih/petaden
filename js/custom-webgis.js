@@ -153,8 +153,7 @@ window.addEventListener('resize', function () {
             institut: window.layer_SebaranInstitut_6,
             politeknik: window.layer_SebaranPoliteknik_7,
             wilayah: window.layer_BatasKabupaten_2,
-            relief: window.layer_ESRIShadedRelief_1,
-            dasar: window.layer_Positron_0
+            dasar: window.layer_GoogleSatellite_0
         };
         return layers[key] || null;
     }

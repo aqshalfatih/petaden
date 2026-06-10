@@ -2648,7 +2648,7 @@ var json_gadm41_IDN_2_2 = {
         GID_1: "IDN.30_1",
         NAME_1: "Sumatera Barat",
         NL_NAME_1: "NA",
-        NAME_2: "Danau",
+        NAME_2: "Danau Singkarak",
         VARNAME_2: "NA",
         NL_NAME_2: "NA",
         TYPE_2: "Water Body",

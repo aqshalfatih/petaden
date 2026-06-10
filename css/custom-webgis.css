@@ -188,12 +188,21 @@ section[id] {
   background: rgba(245, 235, 208, 0.92);
   padding: 0.48rem 0.55rem;
   color: var(--primary);
-  font-size: 0.75rem;
+  font-size: 0.70rem;
   font-weight: 850;
   line-height: 1.25;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.region-legend-grid.compact-region-grid span[data-region] {
+  cursor: pointer;
+}
+
+.region-legend-grid.compact-region-grid span[data-region]:hover {
+  transform: translateY(-1px);
+  border-color: rgba(126, 2, 30, 0.35);
 }
 
 .region-legend-grid.compact-region-grid img {
