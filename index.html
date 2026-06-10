@@ -30,6 +30,105 @@
     <link rel="icon" type="image/png" href="images/logo/logo-petaden.png" />
   </head>
   <body class="min-h-screen overflow-x-hidden bg-[#f5ebd0] pt-[60px] text-[#7e021e] antialiased sm:pt-[64px]">
+
+    <!-- Splash Screen PetaDen Premium -->
+<div id="splashScreen" class="petaden-splash fixed inset-0 z-[99999] flex items-center justify-center overflow-hidden">
+  <!-- Background animated -->
+  <div class="petaden-splash-grid"></div>
+  <div class="petaden-splash-glow petaden-splash-glow-1"></div>
+  <div class="petaden-splash-glow petaden-splash-glow-2"></div>
+  <div class="petaden-splash-glow petaden-splash-glow-3"></div>
+
+  <!-- Floating particles -->
+  <div class="petaden-particles">
+    <span style="--i:1; --x:8%; --y:18%; --d:0s;"></span>
+    <span style="--i:2; --x:18%; --y:72%; --d:.4s;"></span>
+    <span style="--i:3; --x:30%; --y:25%; --d:.8s;"></span>
+    <span style="--i:4; --x:44%; --y:80%; --d:1.1s;"></span>
+    <span style="--i:5; --x:60%; --y:15%; --d:.2s;"></span>
+    <span style="--i:6; --x:76%; --y:70%; --d:.7s;"></span>
+    <span style="--i:7; --x:88%; --y:30%; --d:1.4s;"></span>
+    <span style="--i:8; --x:94%; --y:82%; --d:.9s;"></span>
+  </div>
+
+  <div class="relative z-10 flex flex-col items-center px-6 text-center">
+    <!-- Loader utama -->
+    <div class="petaden-loader-premium">
+      <!-- Orbit -->
+      <div class="petaden-orbit petaden-orbit-1"></div>
+      <div class="petaden-orbit petaden-orbit-2"></div>
+      <div class="petaden-orbit petaden-orbit-3"></div>
+
+      <!-- Compass -->
+      <div class="petaden-compass">
+        <i class="fas fa-location-arrow"></i>
+      </div>
+
+      <!-- Radar rings -->
+      <div class="petaden-radar petaden-radar-1"></div>
+      <div class="petaden-radar petaden-radar-2"></div>
+      <div class="petaden-radar petaden-radar-3"></div>
+
+      <!-- Core map -->
+      <div class="petaden-map-core">
+        <div class="petaden-map-shine"></div>
+        <div class="petaden-map-scan"></div>
+
+        <i class="fas fa-map-marked-alt petaden-map-icon-bg"></i>
+
+        <!-- Map tiles dekoratif -->
+        <div class="petaden-map-tile tile-1"></div>
+        <div class="petaden-map-tile tile-2"></div>
+        <div class="petaden-map-tile tile-3"></div>
+
+        <!-- Route SVG -->
+        <svg class="petaden-route-svg" viewBox="0 0 260 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path class="petaden-route-shadow" d="M34 130 C65 45, 115 145, 148 83 C174 35, 204 70, 230 35" />
+          <path class="petaden-route-line" d="M34 130 C65 45, 115 145, 148 83 C174 35, 204 70, 230 35" />
+
+          <circle class="petaden-route-point point-a" cx="34" cy="130" r="6" />
+          <circle class="petaden-route-point point-b" cx="148" cy="83" r="6" />
+          <circle class="petaden-route-point point-c" cx="230" cy="35" r="6" />
+        </svg>
+
+        <!-- Moving dot -->
+        <div class="petaden-moving-dot"></div>
+
+        <!-- Pins -->
+        <div class="petaden-pin pin-1">
+          <i class="fas fa-graduation-cap"></i>
+        </div>
+        <div class="petaden-pin pin-2">
+          <i class="fas fa-university"></i>
+        </div>
+        <div class="petaden-pin pin-3">
+          <i class="fas fa-map-marker-alt"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Text -->
+    <div class="mt-8">
+      <h1 class="petaden-splash-title text-4xl font-black tracking-[-0.055em] text-[#f5ebd0] sm:text-5xl">
+        PetaDen
+      </h1>
+      <p class="petaden-splash-subtitle mt-2 max-w-sm text-sm font-semibold leading-6 text-[#f5ebd0]/90 sm:text-base">
+        Menyiapkan peta digital perguruan tinggi Sumatera Barat
+      </p>
+    </div>
+
+    <!-- Progress -->
+    <div class="mt-6 w-[230px]">
+      <div class="mb-2 flex items-center justify-between text-[0.68rem] font-black uppercase tracking-[0.16em] text-[#f5ebd0]/85">
+        <span>Loading Map</span>
+        <span id="splashPercent">0%</span>
+      </div>
+      <div class="overflow-hidden rounded-full border border-[#f5ebd0]/45 bg-[#3f010f]/65 p-1 shadow-lg shadow-black/25">
+        <div class="petaden-progress h-2.5 rounded-full bg-[#f5ebd0]"></div>
+      </div>
+    </div>
+  </div>
+</div>
     <header class="fixed left-0 right-0 top-0 z-[1100] border-b border-[#7e021e]/10 bg-[#f5ebd0]/95 shadow-sm shadow-[#7e021e]/5 backdrop-blur-xl">
 
       <!-- Navbar Dekstop -->

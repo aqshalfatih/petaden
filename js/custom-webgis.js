@@ -6,7 +6,43 @@ document.addEventListener('DOMContentLoaded', function () {
     const mobileBackdrop = document.getElementById('mobileBackdrop');
     const backToTop = document.getElementById('backToTop');
     const currentYear = document.getElementById('currentYear');
+// Splash Screen PetaDen Premium
+const splashScreen = document.getElementById('splashScreen');
+const splashPercent = document.getElementById('splashPercent');
 
+if (splashScreen) {
+  document.body.classList.add('splash-active');
+
+  let percent = 0;
+  const percentTimer = setInterval(function () {
+    percent += Math.floor(Math.random() * 9) + 4;
+
+    if (percent >= 100) {
+      percent = 100;
+      clearInterval(percentTimer);
+    }
+
+    if (splashPercent) {
+      splashPercent.textContent = percent + '%';
+    }
+  }, 140);
+
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      if (splashPercent) {
+        splashPercent.textContent = '100%';
+      }
+
+      splashScreen.classList.add('splash-hide');
+      document.body.classList.remove('splash-active');
+
+      setTimeout(function () {
+        splashScreen.remove();
+      }, 850);
+    }, 2600);
+  });
+}
+    
     if (currentYear) currentYear.textContent = new Date().getFullYear();
 
     const desktopNavLinks = document.querySelectorAll('.desktop-nav-link');

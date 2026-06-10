@@ -1297,3 +1297,1107 @@ section[id] {
     font-size: 8px !important;
   }
 }
+
+/* ================================
+   Splash Screen PetaDen Premium
+================================ */
+
+body.splash-active {
+  overflow: hidden;
+}
+
+.petaden-splash {
+  background:
+    radial-gradient(circle at 18% 18%, rgba(245, 235, 208, 0.24), transparent 28%),
+    radial-gradient(circle at 82% 76%, rgba(245, 235, 208, 0.18), transparent 32%),
+    linear-gradient(135deg, #3f010f 0%, #7e021e 48%, #5f0116 100%);
+  transition: opacity 0.75s ease, visibility 0.75s ease, transform 0.75s ease;
+}
+
+.petaden-splash.splash-hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: scale(1.08);
+}
+
+/* Background grid */
+.petaden-splash-grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.22;
+  background-image:
+    linear-gradient(rgba(245, 235, 208, 0.34) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 235, 208, 0.34) 1px, transparent 1px);
+  background-size: 42px 42px;
+  animation: petadenGridMove 8s linear infinite;
+}
+
+/* Glow */
+.petaden-splash-glow {
+  position: absolute;
+  border-radius: 999px;
+  background: #f5ebd0;
+  filter: blur(80px);
+  opacity: 0.18;
+  animation: petadenGlowFloat 5s ease-in-out infinite alternate;
+}
+
+.petaden-splash-glow-1 {
+  width: 260px;
+  height: 260px;
+  top: -80px;
+  left: -70px;
+}
+
+.petaden-splash-glow-2 {
+  width: 360px;
+  height: 360px;
+  right: -130px;
+  bottom: -140px;
+  animation-delay: 0.8s;
+}
+
+.petaden-splash-glow-3 {
+  width: 180px;
+  height: 180px;
+  left: 50%;
+  top: 10%;
+  opacity: 0.1;
+  animation-delay: 1.4s;
+}
+
+/* Particles */
+.petaden-particles span {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: calc(7px + var(--i) * 0.6px);
+  height: calc(7px + var(--i) * 0.6px);
+  border-radius: 999px;
+  background: #f5ebd0;
+  box-shadow: 0 0 22px rgba(245, 235, 208, 0.8);
+  opacity: 0.55;
+  animation: petadenParticleFloat 4s ease-in-out infinite;
+  animation-delay: var(--d);
+}
+
+/* Loader container */
+.petaden-loader-premium {
+  position: relative;
+  width: 215px;
+  height: 215px;
+  display: grid;
+  place-items: center;
+}
+
+/* Orbit */
+.petaden-orbit {
+  position: absolute;
+  border-radius: 999px;
+  border: 2px solid rgba(245, 235, 208, 0.65);
+  box-shadow: 0 0 24px rgba(245, 235, 208, 0.12);
+}
+
+.petaden-orbit::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: #f5ebd0;
+  box-shadow: 0 0 28px rgba(245, 235, 208, 1);
+}
+
+.petaden-orbit-1 {
+  inset: 0;
+  animation: petadenSpin 8s linear infinite;
+}
+
+.petaden-orbit-2 {
+  inset: 18px;
+  border-style: dashed;
+  border-color: rgba(245, 235, 208, 0.5);
+  animation: petadenSpinReverse 5.6s linear infinite;
+}
+
+.petaden-orbit-3 {
+  inset: 36px;
+  border-color: rgba(245, 235, 208, 0.38);
+  animation: petadenSpin 4.2s linear infinite;
+}
+
+/* Compass */
+.petaden-compass {
+  position: absolute;
+  left: 2px;
+  bottom: 22px;
+  z-index: 8;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: #f5ebd0;
+  color: #7e021e;
+  border: 3px solid rgba(126, 2, 30, 0.2);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.28);
+  animation: petadenCompassMove 2.6s ease-in-out infinite;
+}
+
+.petaden-compass i {
+  font-size: 1.2rem;
+  animation: petadenCompassRotate 2.6s ease-in-out infinite;
+}
+
+/* Radar */
+.petaden-radar {
+  position: absolute;
+  width: 125px;
+  height: 125px;
+  border-radius: 999px;
+  border: 3px solid rgba(245, 235, 208, 0.6);
+  animation: petadenRadar 2.4s ease-out infinite;
+}
+
+.petaden-radar-2 {
+  animation-delay: 0.75s;
+}
+
+.petaden-radar-3 {
+  animation-delay: 1.5s;
+}
+
+/* Core map */
+.petaden-map-core {
+  position: relative;
+  width: 136px;
+  height: 136px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 2.1rem;
+  background:
+    radial-gradient(circle at 25% 20%, rgba(126, 2, 30, 0.16), transparent 30%),
+    linear-gradient(135deg, #fff8e7 0%, #f5ebd0 55%, #e8d09d 100%);
+  box-shadow:
+    0 34px 85px rgba(0, 0, 0, 0.38),
+    0 0 0 6px rgba(245, 235, 208, 0.2),
+    inset 0 0 0 2px rgba(126, 2, 30, 0.18);
+  animation: petadenCoreFloat 2.5s ease-in-out infinite;
+}
+
+/* Shine */
+.petaden-map-shine {
+  position: absolute;
+  z-index: 6;
+  inset: -65%;
+  background: linear-gradient(115deg, transparent 38%, rgba(255, 255, 255, 0.72), transparent 62%);
+  transform: translateX(-60%) rotate(12deg);
+  animation: petadenShine 2.6s ease-in-out infinite;
+}
+
+/* Scan line */
+.petaden-map-scan {
+  position: absolute;
+  z-index: 5;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(126, 2, 30, 0.65);
+  box-shadow: 0 0 18px rgba(126, 2, 30, 0.75);
+  animation: petadenScan 2.2s ease-in-out infinite;
+}
+
+/* Map icon */
+.petaden-map-icon-bg {
+  position: absolute;
+  z-index: 1;
+  font-size: 4rem;
+  color: #7e021e;
+  opacity: 0.16;
+}
+
+/* Decorative map tiles */
+.petaden-map-tile {
+  position: absolute;
+  z-index: 2;
+  border-radius: 0.65rem;
+  border: 1px solid rgba(126, 2, 30, 0.16);
+  background: rgba(126, 2, 30, 0.08);
+  animation: petadenTileFloat 2.8s ease-in-out infinite;
+}
+
+.tile-1 {
+  width: 38px;
+  height: 28px;
+  left: 16px;
+  top: 18px;
+}
+
+.tile-2 {
+  width: 42px;
+  height: 32px;
+  right: 18px;
+  bottom: 20px;
+  animation-delay: 0.45s;
+}
+
+.tile-3 {
+  width: 30px;
+  height: 40px;
+  right: 24px;
+  top: 22px;
+  animation-delay: 0.9s;
+}
+
+/* Route */
+.petaden-route-svg {
+  position: absolute;
+  z-index: 4;
+  inset: 12px;
+  width: calc(100% - 24px);
+  height: calc(100% - 24px);
+}
+
+.petaden-route-shadow {
+  stroke: rgba(126, 2, 30, 0.16);
+  stroke-width: 11;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.petaden-route-line {
+  stroke: #7e021e;
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 380;
+  stroke-dashoffset: 380;
+  filter: drop-shadow(0 3px 4px rgba(126, 2, 30, 0.28));
+  animation: petadenRouteDraw 2.5s ease-in-out infinite;
+}
+
+.petaden-route-point {
+  fill: #7e021e;
+  stroke: #f5ebd0;
+  stroke-width: 3;
+  opacity: 0;
+  transform-origin: center;
+  animation: petadenPointPop 2.5s ease-in-out infinite;
+}
+
+.point-a {
+  animation-delay: 0.25s;
+}
+
+.point-b {
+  animation-delay: 0.85s;
+}
+
+.point-c {
+  animation-delay: 1.35s;
+}
+
+/* Moving route dot */
+.petaden-moving-dot {
+  position: absolute;
+  z-index: 7;
+  width: 13px;
+  height: 13px;
+  border-radius: 999px;
+  background: #3f010f;
+  border: 2px solid #f5ebd0;
+  box-shadow: 0 0 24px rgba(126, 2, 30, 0.95);
+  animation: petadenMovingDot 2.5s ease-in-out infinite;
+}
+
+/* Pins */
+.petaden-pin {
+  position: absolute;
+  z-index: 9;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: #7e021e;
+  color: #f5ebd0;
+  border: 3px solid #f5ebd0;
+  box-shadow:
+    0 16px 34px rgba(0, 0, 0, 0.32),
+    0 0 24px rgba(245, 235, 208, 0.25);
+  animation: petadenPinBounce 1.8s ease-in-out infinite;
+}
+
+.pin-1 {
+  width: 42px;
+  height: 42px;
+  top: -16px;
+  right: 8px;
+}
+
+.pin-2 {
+  width: 34px;
+  height: 34px;
+  left: -9px;
+  top: 42px;
+  animation-delay: 0.35s;
+}
+
+.pin-3 {
+  width: 32px;
+  height: 32px;
+  right: 4px;
+  bottom: 6px;
+  animation-delay: 0.7s;
+}
+
+.pin-1 i {
+  font-size: 1.15rem;
+}
+
+.pin-2 i,
+.pin-3 i {
+  font-size: 0.9rem;
+}
+
+/* Text */
+.petaden-splash-title {
+  text-shadow: 0 10px 28px rgba(0, 0, 0, 0.38);
+  animation: petadenTitleIn 0.9s ease both;
+}
+
+.petaden-splash-subtitle {
+  text-shadow: 0 6px 18px rgba(0, 0, 0, 0.32);
+  animation: petadenSubtitleIn 1s ease both;
+  animation-delay: 0.15s;
+}
+
+/* Progress */
+.petaden-progress {
+  width: 0%;
+  box-shadow: 0 0 24px rgba(245, 235, 208, 0.78);
+  animation: petadenProgress 2.6s ease-in-out forwards;
+}
+
+/* Animations */
+@keyframes petadenGridMove {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 84px 84px;
+  }
+}
+
+@keyframes petadenGlowFloat {
+  from {
+    transform: translateY(0) scale(1);
+  }
+  to {
+    transform: translateY(28px) scale(1.12);
+  }
+}
+
+@keyframes petadenParticleFloat {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(0.9);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translate3d(16px, -28px, 0) scale(1.25);
+    opacity: 0.85;
+  }
+}
+
+@keyframes petadenSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes petadenSpinReverse {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes petadenCompassMove {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.05);
+  }
+}
+
+@keyframes petadenCompassRotate {
+  0%, 100% {
+    transform: rotate(-25deg);
+  }
+  50% {
+    transform: rotate(28deg);
+  }
+}
+
+@keyframes petadenRadar {
+  0% {
+    transform: scale(0.58);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.72);
+    opacity: 0;
+  }
+}
+
+@keyframes petadenCoreFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translateY(-10px) rotate(-1.5deg) scale(1.035);
+  }
+}
+
+@keyframes petadenShine {
+  0% {
+    transform: translateX(-70%) rotate(12deg);
+  }
+  45%, 100% {
+    transform: translateX(70%) rotate(12deg);
+  }
+}
+
+@keyframes petadenScan {
+  0% {
+    top: 12%;
+    opacity: 0;
+  }
+  18% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    top: 88%;
+    opacity: 0;
+  }
+}
+
+@keyframes petadenTileFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.65;
+  }
+  50% {
+    transform: translateY(-5px) rotate(-2deg);
+    opacity: 1;
+  }
+}
+
+@keyframes petadenRouteDraw {
+  0% {
+    stroke-dashoffset: 380;
+    opacity: 0.45;
+  }
+  45% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  78% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: -380;
+    opacity: 0.45;
+  }
+}
+
+@keyframes petadenPointPop {
+  0%, 18% {
+    opacity: 0;
+    transform: scale(0.35);
+  }
+  34%, 76% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.35);
+  }
+}
+
+@keyframes petadenMovingDot {
+  0% {
+    transform: translate(-47px, 45px) scale(0.6);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  45% {
+    transform: translate(2px, 5px) scale(1);
+    opacity: 1;
+  }
+  75% {
+    transform: translate(48px, -43px) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(48px, -43px) scale(0.6);
+    opacity: 0;
+  }
+}
+
+@keyframes petadenPinBounce {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  38% {
+    transform: translateY(-10px) scale(1.06);
+  }
+  55% {
+    transform: translateY(0) scale(0.96);
+  }
+  72% {
+    transform: translateY(-4px) scale(1.02);
+  }
+}
+
+@keyframes petadenTitleIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.94);
+    letter-spacing: -0.09em;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    letter-spacing: -0.055em;
+  }
+}
+
+@keyframes petadenSubtitleIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes petadenProgress {
+  0% {
+    width: 0%;
+  }
+  35% {
+    width: 48%;
+  }
+  65% {
+    width: 78%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .petaden-loader-premium {
+    width: 168px;
+    height: 168px;
+  }
+
+  .petaden-map-core {
+    width: 112px;
+    height: 112px;
+    border-radius: 1.55rem;
+  }
+
+  .petaden-map-icon-bg {
+    font-size: 3.15rem;
+  }
+
+  .petaden-compass {
+    width: 36px;
+    height: 36px;
+    left: -2px;
+    bottom: 18px;
+  }
+
+  .petaden-compass i {
+    font-size: 1rem;
+  }
+
+  .pin-1 {
+    width: 38px;
+    height: 38px;
+    top: -14px;
+    right: 2px;
+  }
+
+  .pin-2 {
+    width: 30px;
+    height: 30px;
+    left: -8px;
+    top: 38px;
+  }
+
+  .pin-3 {
+    width: 29px;
+    height: 29px;
+    right: 0;
+    bottom: 3px;
+  }
+
+  .petaden-radar {
+    width: 105px;
+    height: 105px;
+  }
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .petaden-splash *,
+  .petaden-splash *::before,
+  .petaden-splash *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+/* =====================================
+   Responsive Splash Screen PetaDen
+   Tambahkan di PALING BAWAH custom-webgis.css
+===================================== */
+
+/* Tablet kecil dan HP besar */
+@media (max-width: 640px) {
+  .petaden-loader-premium {
+    width: 168px;
+    height: 168px;
+  }
+
+  .petaden-map-core {
+    width: 112px;
+    height: 112px;
+    border-radius: 1.55rem;
+  }
+
+  .petaden-map-icon-bg {
+    font-size: 3.1rem;
+  }
+
+  .petaden-route-svg {
+    inset: 10px;
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+  }
+
+  .petaden-route-line {
+    stroke-width: 6;
+  }
+
+  .petaden-route-shadow {
+    stroke-width: 9;
+  }
+
+  .petaden-moving-dot {
+    width: 11px;
+    height: 11px;
+  }
+
+  .petaden-compass {
+    width: 36px;
+    height: 36px;
+    left: -2px;
+    bottom: 18px;
+  }
+
+  .petaden-compass i {
+    font-size: 1rem;
+  }
+
+  .petaden-radar {
+    width: 105px;
+    height: 105px;
+    border-width: 2px;
+  }
+
+  .pin-1 {
+    width: 38px;
+    height: 38px;
+    top: -14px;
+    right: 2px;
+  }
+
+  .pin-2 {
+    width: 30px;
+    height: 30px;
+    left: -8px;
+    top: 38px;
+  }
+
+  .pin-3 {
+    width: 29px;
+    height: 29px;
+    right: 0;
+    bottom: 3px;
+  }
+
+  .pin-1 i {
+    font-size: 1rem;
+  }
+
+  .pin-2 i,
+  .pin-3 i {
+    font-size: 0.78rem;
+  }
+
+  .petaden-map-tile {
+    border-radius: 0.5rem;
+  }
+
+  .tile-1 {
+    width: 31px;
+    height: 23px;
+    left: 13px;
+    top: 15px;
+  }
+
+  .tile-2 {
+    width: 34px;
+    height: 26px;
+    right: 15px;
+    bottom: 17px;
+  }
+
+  .tile-3 {
+    width: 25px;
+    height: 32px;
+    right: 19px;
+    top: 18px;
+  }
+
+  .petaden-splash-title {
+    font-size: 2.45rem !important;
+    line-height: 1;
+  }
+
+  .petaden-splash-subtitle {
+    max-width: 18rem;
+    font-size: 0.82rem !important;
+    line-height: 1.55rem;
+  }
+
+  .petaden-splash .w-\[230px\] {
+    width: 210px !important;
+  }
+
+  .petaden-splash .mt-8 {
+    margin-top: 1.65rem !important;
+  }
+
+  .petaden-splash .mt-6 {
+    margin-top: 1.25rem !important;
+  }
+
+  .petaden-particles span {
+    width: 6px;
+    height: 6px;
+  }
+}
+
+/* HP ukuran umum: 430px ke bawah */
+@media (max-width: 430px) {
+  .petaden-loader-premium {
+    width: 150px;
+    height: 150px;
+  }
+
+  .petaden-map-core {
+    width: 100px;
+    height: 100px;
+    border-radius: 1.35rem;
+    box-shadow:
+      0 24px 58px rgba(0, 0, 0, 0.32),
+      0 0 0 4px rgba(245, 235, 208, 0.18),
+      inset 0 0 0 2px rgba(126, 2, 30, 0.16);
+  }
+
+  .petaden-map-icon-bg {
+    font-size: 2.75rem;
+  }
+
+  .petaden-orbit {
+    border-width: 1.5px;
+  }
+
+  .petaden-orbit::before {
+    width: 9px;
+    height: 9px;
+    top: -5px;
+  }
+
+  .petaden-orbit-2 {
+    inset: 14px;
+  }
+
+  .petaden-orbit-3 {
+    inset: 28px;
+  }
+
+  .petaden-radar {
+    width: 92px;
+    height: 92px;
+  }
+
+  .petaden-compass {
+    width: 32px;
+    height: 32px;
+    left: -1px;
+    bottom: 15px;
+    border-width: 2px;
+  }
+
+  .petaden-compass i {
+    font-size: 0.88rem;
+  }
+
+  .pin-1 {
+    width: 34px;
+    height: 34px;
+    top: -12px;
+    right: 0;
+    border-width: 2px;
+  }
+
+  .pin-2 {
+    width: 27px;
+    height: 27px;
+    left: -7px;
+    top: 34px;
+    border-width: 2px;
+  }
+
+  .pin-3 {
+    width: 26px;
+    height: 26px;
+    right: 0;
+    bottom: 2px;
+    border-width: 2px;
+  }
+
+  .pin-1 i {
+    font-size: 0.9rem;
+  }
+
+  .pin-2 i,
+  .pin-3 i {
+    font-size: 0.68rem;
+  }
+
+  .petaden-map-scan {
+    height: 1.5px;
+  }
+
+  .petaden-route-line {
+    stroke-width: 5.4;
+  }
+
+  .petaden-route-shadow {
+    stroke-width: 8;
+  }
+
+  .petaden-route-point {
+    r: 5;
+    stroke-width: 2.4;
+  }
+
+  .petaden-moving-dot {
+    width: 10px;
+    height: 10px;
+    border-width: 1.8px;
+  }
+
+  .petaden-splash-title {
+    font-size: 2.25rem !important;
+  }
+
+  .petaden-splash-subtitle {
+    max-width: 17rem;
+    font-size: 0.78rem !important;
+    line-height: 1.45rem;
+  }
+
+  .petaden-splash .w-\[230px\] {
+    width: 195px !important;
+  }
+
+  .petaden-splash-glow-1 {
+    width: 190px;
+    height: 190px;
+  }
+
+  .petaden-splash-glow-2 {
+    width: 230px;
+    height: 230px;
+  }
+
+  .petaden-splash-glow-3 {
+    width: 130px;
+    height: 130px;
+  }
+}
+
+/* HP kecil: 360px ke bawah */
+@media (max-width: 360px) {
+  .petaden-loader-premium {
+    width: 132px;
+    height: 132px;
+  }
+
+  .petaden-map-core {
+    width: 88px;
+    height: 88px;
+    border-radius: 1.15rem;
+  }
+
+  .petaden-map-icon-bg {
+    font-size: 2.35rem;
+  }
+
+  .petaden-orbit-2 {
+    inset: 12px;
+  }
+
+  .petaden-orbit-3 {
+    inset: 24px;
+  }
+
+  .petaden-radar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .petaden-compass {
+    width: 29px;
+    height: 29px;
+    bottom: 12px;
+  }
+
+  .petaden-compass i {
+    font-size: 0.78rem;
+  }
+
+  .pin-1 {
+    width: 30px;
+    height: 30px;
+    top: -10px;
+  }
+
+  .pin-2 {
+    width: 24px;
+    height: 24px;
+    top: 30px;
+  }
+
+  .pin-3 {
+    width: 23px;
+    height: 23px;
+  }
+
+  .pin-1 i {
+    font-size: 0.78rem;
+  }
+
+  .pin-2 i,
+  .pin-3 i {
+    font-size: 0.6rem;
+  }
+
+  .petaden-map-tile {
+    display: none;
+  }
+
+  .petaden-route-line {
+    stroke-width: 4.8;
+  }
+
+  .petaden-route-shadow {
+    stroke-width: 7;
+  }
+
+  .petaden-moving-dot {
+    width: 8.5px;
+    height: 8.5px;
+  }
+
+  .petaden-splash-title {
+    font-size: 2rem !important;
+  }
+
+  .petaden-splash-subtitle {
+    max-width: 15.5rem;
+    font-size: 0.72rem !important;
+    line-height: 1.35rem;
+  }
+
+  .petaden-splash .w-\[230px\] {
+    width: 180px !important;
+  }
+
+  .petaden-splash .text-\[0\.68rem\] {
+    font-size: 0.58rem !important;
+  }
+
+  .petaden-progress {
+    height: 0.5rem;
+  }
+}
+
+/* HP yang tingginya pendek, misalnya layar landscape */
+@media (max-height: 620px) and (max-width: 900px) {
+  .petaden-loader-premium {
+    width: 120px;
+    height: 120px;
+  }
+
+  .petaden-map-core {
+    width: 82px;
+    height: 82px;
+    border-radius: 1.1rem;
+  }
+
+  .petaden-map-icon-bg {
+    font-size: 2.1rem;
+  }
+
+  .petaden-splash-title {
+    font-size: 1.9rem !important;
+  }
+
+  .petaden-splash-subtitle {
+    font-size: 0.7rem !important;
+    line-height: 1.25rem;
+  }
+
+  .petaden-splash .mt-8 {
+    margin-top: 1rem !important;
+  }
+
+  .petaden-splash .mt-6 {
+    margin-top: 0.9rem !important;
+  }
+
+  .petaden-splash .w-\[230px\] {
+    width: 175px !important;
+  }
+}
