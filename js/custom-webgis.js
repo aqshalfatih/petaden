@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const mobileBackdrop = document.getElementById('mobileBackdrop');
     const backToTop = document.getElementById('backToTop');
     const currentYear = document.getElementById('currentYear');
+
+
+
 // Splash Screen PetaDen Premium
 const splashScreen = document.getElementById('splashScreen');
 const splashPercent = document.getElementById('splashPercent');
@@ -38,11 +41,12 @@ if (splashScreen) {
 
       setTimeout(function () {
         splashScreen.remove();
-      }, 850);
-    }, 2600);
+      }, 650);
+    }, 2000);
   });
 }
-    
+// HAPUS YG DIATAS
+
     if (currentYear) currentYear.textContent = new Date().getFullYear();
 
     const desktopNavLinks = document.querySelectorAll('.desktop-nav-link');
