@@ -9,6 +9,44 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (currentYear) currentYear.textContent = new Date().getFullYear();
 
+    const desktopNavLinks = document.querySelectorAll('.desktop-nav-link');
+
+    function setActiveDesktopNav(target) {
+        desktopNavLinks.forEach(function (link) {
+            link.classList.toggle('is-active', link.dataset.navTarget === target);
+        });
+    }
+
+    function updateDesktopNavOnScroll() {
+        if (!desktopNavLinks.length) return;
+
+        const offset = 120;
+        const scrollPosition = window.scrollY + offset;
+        const sections = ['peta', 'statistik', 'tentang', 'tim'];
+
+        let activeSection = 'beranda';
+
+        sections.forEach(function (sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section && scrollPosition >= section.offsetTop) {
+                activeSection = sectionId;
+            }
+        });
+
+        setActiveDesktopNav(activeSection);
+    }
+
+    if (desktopNavLinks.length) {
+        desktopNavLinks.forEach(function (link) {
+            link.addEventListener('click', function () {
+                setActiveDesktopNav(link.dataset.navTarget || 'beranda');
+            });
+        });
+
+        updateDesktopNavOnScroll();
+        window.addEventListener('scroll', updateDesktopNavOnScroll, { passive: true });
+    }
+
     if (menuBtn && menuIcon && mobileMenu && mobileBackdrop) {
         function openMobileMenu() {
             mobileBackdrop.classList.remove('hidden');

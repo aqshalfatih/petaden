@@ -35,6 +35,19 @@ section[id] {
   scroll-margin-top: 0px;
 }
 
+/* Active Navbar Desktop */
+.desktop-nav-link.is-active {
+  background: #7e021e !important;
+  color: #f5ebd0 !important;
+  box-shadow: 0 10px 24px rgba(126, 2, 30, 0.18);
+}
+
+.desktop-nav-link.is-active:hover {
+  background: #7e021e !important;
+  color: #f5ebd0 !important;
+  transform: translateY(-1px);
+}
+
 #preloader.hide {
   opacity: 0;
   pointer-events: none;
