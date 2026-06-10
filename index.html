@@ -959,7 +959,7 @@
         } else {
           highlightLayer.setStyle({
             fillColor: "rgba(255, 255, 0, 1.00)",
-            fillOpacity: 1,
+            fillOpacity: 0.5,
           });
         }
       }
@@ -1475,16 +1475,11 @@
             map.addLayer(layer_BatasKabupaten_2);
           }
 
-          document.getElementById("peta").scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
-
           setTimeout(function () {
             map.fitBounds(targetLayer.getBounds(), {
               padding: [40, 40],
               maxZoom: 11,
-              duration: 1.2,
+              duration: 1.8,
               easeLinearity: 0.25
             });
 
