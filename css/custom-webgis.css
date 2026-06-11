@@ -2402,3 +2402,59 @@ body.splash-active {
     width: 175px !important;
   }
 }
+
+/* Responsive Modal Statistik Jenis PT */
+#statTypeModal {
+  overscroll-behavior: contain;
+}
+
+#statTypeList {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(126, 2, 30, 0.35) transparent;
+}
+
+#statTypeList::-webkit-scrollbar {
+  width: 6px;
+}
+
+#statTypeList::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(126, 2, 30, 0.35);
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+@media (max-width: 480px) {
+  #statTypeModal {
+    align-items: center;
+    justify-content: center;
+  }
+
+  #statTypeModal .stat-type-modal-card {
+    max-height: 68dvh;
+    border-radius: 1rem;
+  }
+
+  #statTypeList {
+    max-height: none;
+  }
+}
+
+@media (max-width: 360px) {
+  #statTypeModal {
+    padding: 0.55rem;
+  }
+
+  #statTypeTitle {
+    font-size: 0.92rem;
+  }
+
+  #statTypeCount {
+    font-size: 0.62rem;
+  }
+}

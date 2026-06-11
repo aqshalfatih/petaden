@@ -473,3 +473,238 @@ document.addEventListener('DOMContentLoaded', function () {
         setTimeout(initCampusSearch, 450);
     });
 })();
+
+(function () {
+  const modal = document.getElementById("statTypeModal");
+  const backdrop = document.getElementById("statTypeBackdrop");
+  const closeBtn = document.getElementById("statTypeClose");
+  const titleEl = document.getElementById("statTypeTitle");
+  const countEl = document.getElementById("statTypeCount");
+  const listEl = document.getElementById("statTypeList");
+
+  if (!modal || !titleEl || !countEl || !listEl) return;
+
+  const typeLayerMap = {
+    "Universitas":
+      typeof layer_SebaranUniversitas_3 !== "undefined"
+        ? layer_SebaranUniversitas_3
+        : null,
+
+    "Sekolah Tinggi":
+      typeof layer_SebaranSekolahTinggi_4 !== "undefined"
+        ? layer_SebaranSekolahTinggi_4
+        : null,
+
+    "Akademi":
+      typeof layer_SebaranAkademi_5 !== "undefined"
+        ? layer_SebaranAkademi_5
+        : null,
+
+    "Institut":
+      typeof layer_SebaranInstitut_6 !== "undefined"
+        ? layer_SebaranInstitut_6
+        : null,
+
+    "Politeknik":
+      typeof layer_SebaranPoliteknik_7 !== "undefined"
+        ? layer_SebaranPoliteknik_7
+        : null,
+  };
+
+  const typeToggleMap = {
+    "Universitas": "universitas",
+    "Sekolah Tinggi": "sekolahTinggi",
+    "Akademi": "akademi",
+    "Institut": "institut",
+    "Politeknik": "politeknik",
+  };
+
+  let activeItems = [];
+
+  function safeText(value) {
+    return String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  function getCampusItemsByType(type) {
+    const layerGroup = typeLayerMap[type];
+    const items = [];
+
+    if (!layerGroup || typeof layerGroup.eachLayer !== "function") {
+      return items;
+    }
+
+    layerGroup.eachLayer(function (markerLayer) {
+      const props = markerLayer.feature?.properties || {};
+
+      items.push({
+        nama: props.NAMA_PT || "Tanpa nama",
+        jenis: props.JENIS || type,
+        kota: props.KOTA || "-",
+        alamat: props.ALAMAT || "",
+        akreditasi: props.AKREDITASI || "",
+        layer: markerLayer,
+      });
+    });
+
+    return items.sort(function (a, b) {
+      return a.nama.localeCompare(b.nama, "id");
+    });
+  }
+
+  function renderCampusList(items) {
+    if (!items.length) {
+      listEl.innerHTML = `
+        <div class="rounded-2xl border border-[#7e021e]/15 bg-white/35 p-4 text-center">
+          <p class="text-sm font-bold text-[#7e021e]/75">
+            Data kampus untuk jenis ini tidak ditemukan.
+          </p>
+        </div>
+      `;
+      return;
+    }
+
+    listEl.innerHTML = items
+      .map(function (item, index) {
+        const alamat = item.alamat
+          ? `<p class="mt-1 line-clamp-2 text-[0.64rem] font-medium leading-4 text-[#7e021e]/65 sm:text-xs sm:leading-5">${safeText(item.alamat)}</p>`
+          : "";
+
+        const akreditasi = item.akreditasi
+          ? `<span class="rounded-full bg-[#7e021e]/10 px-2 py-0.5 text-[0.58rem] font-black text-[#7e021e] sm:px-2.5 sm:py-1 sm:text-[0.65rem]">Akreditasi ${safeText(item.akreditasi)}</span>`
+          : "";
+
+        return `
+          <button
+            type="button"
+            data-stat-campus-index="${index}"
+            class="w-full rounded-xl border border-[#7e021e]/15 bg-white/35 p-2.5 text-left shadow-sm transition hover:-translate-y-0.5 hover:bg-white/55 hover:shadow-md active:scale-[0.99] sm:rounded-2xl sm:p-3"
+          >
+            <div class="flex items-start gap-2.5 sm:gap-3">
+              <span class="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-[#7e021e] text-[0.62rem] font-black text-[#f5ebd0] sm:h-8 sm:w-8 sm:rounded-xl sm:text-[0.72rem]">
+                ${index + 1}
+              </span>
+
+              <div class="min-w-0 flex-1">
+                <h4 class="line-clamp-2 text-[0.74rem] font-black leading-snug text-[#7e021e] sm:text-sm">
+                  ${safeText(item.nama)}
+                </h4>
+
+                <div class="mt-1 flex flex-wrap items-center gap-1.5">
+                  <span class="rounded-full bg-[#f5ebd0] px-2 py-0.5 text-[0.58rem] font-black text-[#7e021e] sm:px-2.5 sm:py-1 sm:text-[0.65rem]">
+                    ${safeText(item.kota)}
+                  </span>
+                  ${akreditasi}
+                </div>
+
+                ${alamat}
+              </div>
+
+              <i class="fas fa-map-marker-alt mt-1 shrink-0 text-xs text-[#7e021e]/70 sm:text-sm"></i>
+            </div>
+          </button>
+        `;
+      })
+      .join("");
+  }
+
+  function openModal(type) {
+    activeItems = getCampusItemsByType(type);
+
+    titleEl.textContent = "Daftar " + type;
+    countEl.textContent = activeItems.length + " perguruan tinggi";
+
+    renderCampusList(activeItems);
+
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
+    document.body.classList.add("overflow-hidden");
+  }
+
+  function closeModal() {
+    modal.classList.add("hidden");
+    modal.classList.remove("flex");
+    document.body.classList.remove("overflow-hidden");
+  }
+
+  document.querySelectorAll(".stat-type-view-btn").forEach(function (button) {
+    button.addEventListener("click", function (e) {
+      e.stopPropagation();
+      openModal(button.dataset.statType);
+    });
+  });
+
+  listEl.addEventListener("click", function (e) {
+    const itemButton = e.target.closest("[data-stat-campus-index]");
+    if (!itemButton) return;
+
+    const index = Number(itemButton.dataset.statCampusIndex);
+    const item = activeItems[index];
+
+    if (!item || !item.layer) return;
+
+    closeModal();
+
+    const type = item.jenis;
+    const parentLayer = typeLayerMap[type] || Object.values(typeLayerMap).find(function (layerGroup) {
+      let found = false;
+
+      if (layerGroup && typeof layerGroup.eachLayer === "function") {
+        layerGroup.eachLayer(function (markerLayer) {
+          if (markerLayer === item.layer) found = true;
+        });
+      }
+
+      return found;
+    });
+
+    if (typeof map !== "undefined" && parentLayer && !map.hasLayer(parentLayer)) {
+      map.addLayer(parentLayer);
+    }
+
+    const toggleKey = typeToggleMap[type];
+    const toggleInput = toggleKey
+      ? document.querySelector('[data-layer-toggle="' + toggleKey + '"]')
+      : null;
+
+    if (toggleInput) {
+      toggleInput.checked = true;
+    }
+
+    const petaSection = document.getElementById("peta");
+    if (petaSection) {
+      petaSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+
+    setTimeout(function () {
+      if (typeof map !== "undefined" && typeof item.layer.getLatLng === "function") {
+        const latlng = item.layer.getLatLng();
+
+        map.flyTo(latlng, 16, {
+          animate: true,
+          duration: 1.1,
+        });
+
+        setTimeout(function () {
+          item.layer.openPopup();
+        }, 900);
+      }
+    }, 450);
+  });
+
+  if (backdrop) backdrop.addEventListener("click", closeModal);
+  if (closeBtn) closeBtn.addEventListener("click", closeModal);
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+      closeModal();
+    }
+  });
+})();
